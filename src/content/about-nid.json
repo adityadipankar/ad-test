@@ -1,0 +1,109 @@
+{
+  "id": "about",
+  "title": "About NID",
+  "slug": "about",
+  "template": "primary",
+  "utility": "none",
+  "_source": "Figma board 3754:240099 (02 About NID — Landing), verified against the 3 col / 2 col / mobile variants.",
+
+  "subPages": [
+    { "label": "NID’s ‘Mandate’",   "targetType": "page", "page": "charter" },
+    { "label": "Director’s Message", "targetType": "page", "page": "directors-message" },
+    { "label": "History",            "targetType": "page", "page": "history" },
+    { "label": "Campuses",           "targetType": "page", "page": "campuses" },
+    { "label": "News & Events",      "targetType": "page", "page": "news-events" }
+  ],
+
+  "hero": {
+    "asset": "image-35",
+    "alt": "Students at work in an NID studio",
+    "ratio": { "c4": "1038 / 478", "c3": "643 / 321", "c2": "16 / 9", "c1": "358 / 269" },
+    "radius": "top-left"
+  },
+
+  "intro": "The establishment of NID was a result of several forces, both global and local. The late 1950s saw a confluence of these forces, and this time would be a significant one for Indian culture and education. This was a time of reappraisal and reconstruction in a newly independent India. A young nation was confronted with the mammoth task of nation building, of balancing age-old traditions with modern technology and ideas.",
+
+  "sections": [
+    {
+      "type": "mosaic",
+      "title": "News & Events",
+      "links": [
+        { "label": "All News & Events", "targetType": "page", "page": "news-events" }
+      ],
+      "items": [
+        {
+          "featured": true,
+          "overline": "latest",
+          "headline": "North-East Artisans Honoured by Hon’ble President of India at Rashtrapati Bhavan",
+          "asset": "news-north-east",
+          "alt": "Artisans from the North-East being honoured at Rashtrapati Bhavan",
+          "targetType": "page",
+          "page": "news-north-east-artisans"
+        },
+        {
+          "headline": "Drawing Dialogues happening at NID very soon. Register!",
+          "date": "July 23 2026",
+          "asset": "news-drawing-dialogues",
+          "alt": "Drawing Dialogues event poster"
+        },
+        {
+          "headline": "Lorem ipsum",
+          "date": "July 23 2026",
+          "asset": "news-placeholder",
+          "alt": "",
+          "_todo": "Copy not written — this card is still lorem ipsum on the Figma board."
+        }
+      ]
+    },
+    {
+      "type": "cards",
+      "title": "Campuses",
+      "items": [
+        { "name": "Ahmedabad",   "asset": "campus-ahmedabad",   "alt": "NID Ahmedabad campus",   "targetType": "page", "page": "campuses/ahmedabad" },
+        { "name": "Gandhinagar", "asset": "campus-gandhinagar", "alt": "NID Gandhinagar campus", "targetType": "page", "page": "campuses/gandhinagar" },
+        { "name": "Bangalore",   "asset": "campus-bengaluru",   "alt": "NID Bengaluru campus",   "targetType": "page", "page": "campuses/bengaluru",
+          "_todo": "Board says ‘Bangalore’; the campus page says ‘Bengaluru’. Pick one." }
+      ]
+    },
+    {
+      "type": "cards",
+      "variant": "person",
+      "title": "Student Awards",
+      "links": [
+        { "label": "Visit Student Awards Gallery", "targetType": "page", "page": "student-awards" }
+      ],
+      "items": [
+        {
+          "name": "Rishaya Palkhivala",
+          "asset": "award-rishaya",
+          "alt": "Rishaya Palkhivala",
+          "note": "A short film — ‘Sorry For Your Loss’ — by film and video Communication (FVC) M Des student at the National Institute of Design (NID) Ahmedabad was awarded the best film under the National Category of the Satyajit Ray Centenary Student’s Short Film Competition on the theme ‘Realism’."
+        },
+        {
+          "name": "Mayank Kumar",
+          "asset": "award-mayank",
+          "alt": "Mayank Kumar",
+          "note": "Mayank has been awarded the prestigious Dean's Excellence Award for developing an AI-powered accessibility tool that helps visually impaired students navigate campus independently."
+        }
+      ]
+    }
+  ],
+
+  "footer": {
+    "primary": [
+      "Careers", "Integrated Design Services", "Placements", "Young Designers",
+      "NID Alumni Data Registration", "Tenders", "PM Vidyalaxmi Scheme"
+    ],
+    "secondary": ["Right to Information", "Privacy Policy", "Terms & Conditions", "Sitemap"],
+    "contact": {
+      "heading": "Contact",
+      "emails": ["info@nid.edu", "cmr@nid.edu"],
+      "phones": ["+91 79 2662 9500", "+91 79 2662 9600"],
+      "social": ["X", "Facebook", "YouTube", "Instagram"]
+    },
+    "collaborations": {
+      "heading": "Collaborations",
+      "logos": ["Skill India", "India.gov.in", "Make in India", "Startup India", "Ministry of Education", "Khelo India"]
+    }
+  }
+}

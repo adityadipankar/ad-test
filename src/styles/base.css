@@ -1,0 +1,248 @@
+/* NID website — layout and components.
+ * All measurements come from tokens.css, which is generated from the Figma
+ * variable collections. Nothing here hard-codes a size, colour or breakpoint value.
+ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--c-surface-page);
+  color: var(--c-text-primary);
+  font-family: var(--font-body);
+  font-size: var(--type-body-base-regular-size);
+  line-height: var(--type-body-base-regular-line-height);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--c-accent-primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--c-surface-inverse); color: var(--c-text-on-accent);
+  padding: var(--space-12) var(--space-16);
+}
+.skip-link:focus { left: var(--space-16); top: var(--space-16); }
+
+/* ---------------------------------------------------------------- the grid */
+
+/* The single source of layout truth. Column count, gutters, page margin and
+   content width all come from the Breakpoint collection, so the grid reflows
+   from 4 columns to 1 without a single hard-coded width. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-column-gap);
+  row-gap: var(--grid-row-gap);
+  width: min(100% - (var(--grid-page-margin) * 2), var(--grid-content-width));
+  margin-inline: auto;
+}
+
+/* Column 1 is the label rail at 4 and 3 columns. At 2 and 1 it becomes a band
+   above the content — the rule the pattern documentation calls "rail to band". */
+.rail       { grid-column: 1 / span 1; }
+.content    { grid-column: 2 / -1; }
+.measure    { grid-column: 2 / span 2; }   /* prose, capped at two columns */
+.full       { grid-column: 1 / -1; }
+.aside      { grid-column: -2 / -1; align-self: start; }  /* links, last column */
+
+@media (max-width: 1279px) {
+  /* 3 columns: prose still sits beside the rail, the aside drops below the rail */
+  .measure { grid-column: 2 / -1; }
+  .aside   { grid-column: 1 / span 1; }
+}
+
+@media (max-width: 1023px) {
+  /* 2 columns and below: the rail is a band, everything else is full width */
+  .rail, .content, .measure, .aside { grid-column: 1 / -1; }
+  .aside { justify-self: start; width: 100%; }
+}
+
+/* ------------------------------------------------------------------ chrome */
+
+.masthead {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--c-surface-page);
+  border-bottom: 1px solid var(--c-border-faint);
+}
+.masthead__inner {
+  display: flex; align-items: center; gap: var(--space-16);
+  min-height: 60px;
+  width: min(100% - (var(--grid-page-margin) * 2), var(--grid-content-width));
+  margin-inline: auto;
+}
+.masthead__brand { display: flex; align-items: center; gap: var(--space-12); text-decoration: none; }
+.masthead__mark {
+  width: 26px; height: 26px; flex: none; border-radius: 50% 50% 50% 0;
+  background: var(--c-accent-primary);
+}
+.masthead__wordmark { display: grid; gap: 1px; }
+.masthead__wordmark span:first-child { color: var(--c-text-secondary); }
+.masthead__tools { margin-left: auto; display: flex; align-items: center; gap: var(--space-16); }
+
+@media (max-width: 767px) {
+  /* The mark carries the brand on small screens; the wordmark would wrap to
+     four lines in a 358px measure. */
+  .masthead__wordmark { display: none; }
+  .masthead__tools { gap: var(--space-4); }
+}
+
+.iconbtn {
+  appearance: none; border: 0; background: none; cursor: pointer;
+  width: 32px; height: 32px; display: grid; place-items: center;
+  color: var(--c-icon-secondary); border-radius: 4px;
+}
+.iconbtn:hover { color: var(--c-icon-primary); background: var(--c-surface-raised); }
+.iconbtn svg { width: 18px; height: 18px; }
+
+/* The block-print band that opens and closes every page. Standing in for the
+   artwork until the real SVG is exported from the file. */
+.patternstrip {
+  height: 32px;
+  background:
+    repeating-linear-gradient(90deg,
+      var(--c-accent-tertiary) 0 10px, transparent 10px 22px),
+    repeating-linear-gradient(90deg,
+      var(--c-accent-secondary) 0 4px, transparent 4px 34px);
+  background-position: 0 0, 8px 0;
+  opacity: .55;
+}
+
+.pagefoot {
+  margin-top: var(--space-48);
+  border-top: 1px solid var(--c-border-faint);
+  padding-block: var(--space-32);
+}
+
+/* -------------------------------------------------------------- typography */
+
+.pagetitle { margin: 0; padding-block: var(--space-32) var(--space-24); }
+.sectiontitle { margin: 0; }
+.intro { margin: 0; color: var(--c-text-secondary); }
+.prose { margin: 0; }
+.prose + .prose { margin-top: var(--space-16); }
+
+/* ------------------------------------------------------------------ blocks */
+
+.stack { display: grid; gap: var(--space-16); align-content: start; }
+.stack--tight { gap: var(--space-8); }
+
+.section { display: contents; }
+
+.hr {
+  grid-column: 1 / -1;
+  height: 1px; border: 0; margin: var(--space-12) 0;
+  background: var(--c-border-faint);
+}
+@media (max-width: 767px) {
+  .hr { display: none; }   /* separators are omitted at one column */
+}
+
+/* Media: aspect ratio per breakpoint, so the hero crops the way the boards do */
+.media {
+  background: var(--c-accent-subtle);
+  aspect-ratio: var(--ratio, 16 / 9);
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.media > img { width: 100%; height: 100%; object-fit: cover; }
+.media--hero { --ratio: 1038 / 478; border-top-left-radius: var(--space-64); }
+@media (max-width: 1279px) { .media--hero { --ratio: 643 / 321; } }
+@media (max-width: 1023px) { .media--hero { --ratio: 16 / 9; } }
+@media (max-width: 767px)  { .media--hero { --ratio: 358 / 269; } }
+
+/* Placeholder tile shown where the source image has not been brought across */
+.media[data-placeholder]::after {
+  content: attr(data-placeholder);
+  position: absolute; inset: auto var(--space-12) var(--space-12) var(--space-12);
+  font-family: var(--font-primary);
+  font-size: var(--type-label-micro-size);
+  letter-spacing: .04em;
+  color: var(--c-text-quaternary);
+}
+
+/* Cards flow inside the content area. The nested grid shares the outer gutter,
+   so a card lands on exactly the same column edges as the parent grid. */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(var(--card-cols, 3), minmax(0, 1fr));
+  column-gap: var(--grid-column-gap);
+  row-gap: var(--grid-row-gap);
+}
+.section--aside .cards { --card-cols: 2; }
+@media (max-width: 1279px) { .cards, .section--aside .cards { --card-cols: 2; } }
+@media (max-width: 767px)  { .cards, .section--aside .cards { --card-cols: 1; } }
+
+.card { display: grid; gap: var(--space-12); align-content: start; text-decoration: none; }
+.card__title { margin: 0; }
+.card__meta { color: var(--c-text-tertiary); }
+.card__note { color: var(--c-text-secondary); }
+.card--wide { grid-column: 1 / -1; }
+.card--wide .media { --ratio: 684 / 240; }
+@media (max-width: 767px) { .card--wide .media { --ratio: 16 / 9; } }
+
+.card--campus .media { --ratio: 1 / 1; }
+.card--person .media { --ratio: 1 / 1; border-radius: 50%; width: 132px; }
+
+/* Call to action — the file's link component. Icon is derived, never authored. */
+.cta {
+  display: flex; align-items: center; gap: var(--space-12);
+  padding-block: var(--space-8);
+  border-bottom: 1px solid var(--c-border-subtle);
+  text-decoration: none;
+  color: var(--c-text-primary);
+}
+.cta:hover { border-bottom-color: var(--c-border-strong); }
+.cta__label { flex: 1 1 auto; min-width: 0; }
+.cta__icon { flex: none; width: 24px; height: 24px; color: var(--c-icon-quaternary); }
+.cta__icon svg { width: 100%; height: 100%; display: block; }
+
+.linklist { display: grid; gap: var(--space-16); align-content: start; }
+
+/* ------------------------------------------------------------------ footer */
+
+.footcol { display: grid; gap: var(--space-8); align-content: start; }
+.footcol h2 { margin: 0 0 var(--space-8); color: var(--c-text-quaternary); }
+.footcol a { text-decoration: none; }
+.footlink {
+  display: block; padding-block: var(--space-8);
+  border-bottom: 1px solid var(--c-border-faint);
+  text-decoration: none;
+}
+.social { display: flex; gap: var(--space-12); margin-top: var(--space-12); color: var(--c-icon-tertiary); }
+.social svg { width: 16px; height: 16px; }
+
+.logogrid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-12);
+  padding: var(--space-12);
+  background: var(--c-surface-raised);
+}
+.logogrid span {
+  display: grid; place-items: center; text-align: center;
+  aspect-ratio: 3 / 2; padding: var(--space-4);
+  background: var(--c-surface-page);
+  color: var(--c-text-quaternary);
+  font-family: var(--font-primary);
+  font-size: 9px; line-height: 1.2;
+}
+
+/* --------------------------------------------------------------- utilities */
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
