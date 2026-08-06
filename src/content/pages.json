@@ -1,288 +1,1273 @@
 {
   "_source": "Extracted from the Figma page boards by tokens/extractor.js. Re-run the extractor to refresh; hand edits will be overwritten.",
   "pages": [
-{
-  "title": "About NID", "slug": "about-nid", "template": "primary",
-  "subPages": [
-    {"label":"NID’s ‘Mandate’","page":"about-nid/charter"},
-    {"label":"Director’s Message","page":"about-nid/directors-message"},
-    {"label":"History","page":"about-nid/history"},
-    {"label":"Campuses","page":"about-nid/campuses"},
-    {"label":"News & Events","page":"about-nid/news-and-events"}
-  ],
-  "hero": {"asset":"image-35","placeholder":false,"alt":"Students at work in an NID studio"},
-  "intro": "The establishment of NID was a result of several forces, both global and local. The late 1950s saw a confluence of these forces, and this time would be a significant one for Indian culture and education. This was a time of reappraisal and reconstruction in a newly independent India. A young nation was confronted with the mammoth task of nation building, of balancing age-old traditions with modern technology and ideas.",
-  "sections": [
-    {"title":"News & Events","type":"mosaic",
-     "items":[
-       {"overline":"latest","name":"North-East Artisans Honoured by Hon’ble President of India at Rashtrapati Bhavan","asset":"news-north-east","featured":true,"page":"about-nid/news-and-events/article-north-east-artisans"},
-       {"name":"Drawing Dialogues happening at NID very soon. Register!","meta":"July 23 2026","asset":"news-drawing-dialogues"},
-       {"name":"Lorem ipsum","meta":"July 23 2026","asset":"news-placeholder","_todo":"Copy not written on the Figma board."}
-     ],
-     "links":[{"label":"All News & Events","page":"about-nid/news-and-events"}]},
-    {"title":"Campuses","type":"cards","variant":"campus",
-     "items":[
-       {"name":"Ahmedabad","asset":"campus-ahmedabad","page":"about-nid/campuses/ahmedabad"},
-       {"name":"Gandhinagar","asset":"campus-gandhinagar","page":"about-nid/campuses/gandhinagar"},
-       {"name":"Bangalore","asset":"campus-bengaluru","page":"about-nid/campuses/bengaluru","_todo":"Board says Bangalore; campus page says Bengaluru."}
-     ]},
-    {"title":"Student Awards","type":"cards","variant":"person",
-     "items":[
-       {"name":"Rishaya Palkhivala","note":"A short film — ‘Sorry For Your Loss’ — by film and video Communication (FVC) M Des student at the National Institute of Design (NID) Ahmedabad was awarded the best film under the National Category of the Satyajit Ray Centenary Student’s Short Film Competition on the theme ‘Realism’.","asset":"award-rishaya"},
-       {"name":"Mayank Kumar","note":"Mayank has been awarded the prestigious Dean's Excellence Award for developing an AI-powered accessibility tool that helps visually impaired students navigate campus independently.","asset":"award-mayank"}
-     ],
-     "links":[{"label":"Visit Student Awards Gallery"}]}
-  ]
-},
-{
-  "title": "Charter", "slug": "about-nid/charter", "parent": "about-nid",
-  "keyInfo": [{"label":"Purpose","value":"NID’s mandate"},{"label":"Status","value":"Institution of National Importance, NID Act 2014"}],
-  "hero": {"asset":"hero-charter","placeholder":true},
-  "intro": "The mandate for NID is to offer world-class design education and to promote design awareness and application towards raising the quality of life by and through Education to create design professionals of excellence to help meet India's diverse design needs.",
-  "sections": [
-    {"title":"Mandate","type":"text",
-     "body":"The mandate for NID is to offer world-class design education and to promote design awareness and application towards raising the quality of life by and through Education to create design professionals of excellence to help meet India's diverse design needs.\n\nNID has been declared 'Institution of National Importance' by the Act of Parliament, by virtue of the National Institute of Design Act 2014.",
-     "image":{"asset":"charter-mandate","placeholder":true},
-     "links":[{"label":"info@nid.edu","targetType":"email","address":"info@nid.edu"},{"label":"+91 79 2662 9500","targetType":"phone","address":"+91 79 2662 9500"},{"label":"NID Act & Statutes","targetType":"document"}]},
-    {"title":"The Ten Mandates","type":"text",
-     "body":"To train design trainers for other design and design-related institutions and positions in the 21st century as global leaders in Design Education and Research.\n\nEnsuring the expansion in the number of quality design professionals and faculty, through existing and new institutional mechanisms.\n\nBecoming a repository of design knowledge, experience and information on products, systems, materials, design and production processes.\n\nEncouraging the design of products and systems of everyday use in a spirit of restless search for indigenous design solutions.\n\nTo undertake fundamental and applied research to create cutting edge knowledge in the areas of design.\n\nTo help place designers in key sectors of national need for benchmarking of standards.\n\nTo offer integrated design consultancy services and cutting-edge design solutions.\n\nProviding design inputs from the point of view of using design as an integrating force.\n\nTo humanise technology and integrate the physical with the virtual and digital worlds.\n\nTo provide design intervention for craft, handloom, rural technology, small, medium and large-scale enterprises.",
-     "image":{"asset":"charter-mandates","placeholder":true}},
-    {"title":"More in About NID","type":"links",
-     "items":[{"label":"Director’s Message","page":"about-nid/directors-message"},{"label":"History","page":"about-nid/history"},{"label":"Campuses","page":"about-nid/campuses"},{"label":"News & Events","page":"about-nid/news-and-events"}]}
-  ]
-},
-{
-  "title": "Director’s Message", "slug": "about-nid/directors-message", "parent": "about-nid",
-  "hero": {"asset":"director-portrait","placeholder":true},
-  "intro": "It is truly an honour to serve this great institution that has always stood up to emerging local and global challenges through the power of design. ‘The World of Indian Design’ is now in a leadership position to contribute to the ‘Design of the World’. We are in the process of taking up many collaborative initiatives with support from public involved with the nation’s economic and social sectors. Before we embark on these challenges afresh, we need some reflection and rethinking on the fundamental notions of ‘Design’ in the Indian context.",
-  "sections": [
-    {"title":"","type":"text",
-     "body":"There is a lot of discussion on ‘wicked problems in design thinking’. Rarely do we look at design or a particular conception of design itself as a ‘wicked’ problem. The mainstream notion of design centered around the transformation of the artificial world for human consumption takes a slightly extreme end of the spectrum perspective, instead of an entire spectrum ranging from art, craft, engineering, architecture, design and many more. Being an alumnus of Visva-Bharati and NID, I am fortunate to empathize with both viewpoints. However, contemporary design has a lot to learn from the holistic, integrated, and evolved notions of art, craft, engineering, and architecture. The concept of kala evolved in the Indian subcontinent over several thousand years and does not explicitly distinguish between fine arts and practical arts. Similarly, manifestations of arts, crafts, architecture, and traditional engineering reflect much more diversity across India's diverse regions and cultures compared to contemporary design.\n\nEven within Europe from where design has evolved, the word ‘design’ or its equivalent takes on a different meaning in each country. For example, the German concept of ‘Design’ is very different from the Italian notion of ‘Disegno’. There is a need to redefine our idea of design that is culturally rooted and that can address diverse challenges of different regions in the Indian context.\n\nThe second concern I have relates to the ‘purpose of design’. All forms of design aim to improve the human condition through creation, modification, and transformation of the physical world. Unfortunately, this aim is often mediated by powerful personal, social, economic, and political forces leading to compromised design outcomes. Design with a strong connection to materialistic consumption supported by market forces, needs to be re-envisioned for a society that has always had deep-rooted spiritual values at the core. Design is now recognized as a transformative force for improving the ‘standard of living’ for many. For a welfare state such as India, this also needs to be complemented with equal, if not more, emphasis on improving the ‘quality of life’ for all. Hence, there is a need for a paradigm shift in focus on improving the standard of living for few to improving the quality of life of many."},
-    {"title":"More in About NID","type":"links",
-     "items":[{"label":"Charter","page":"about-nid/charter"},{"label":"History","page":"about-nid/history"},{"label":"Campuses","page":"about-nid/campuses"},{"label":"News & Events","page":"about-nid/news-and-events"}]}
-  ]
-},
-{
-  "title": "History", "slug": "about-nid/history", "parent": "about-nid",
-  "keyInfo": [{"label":"Established","value":"September 1961 · Ahmedabad"},{"label":"India Report","value":"Presented 7 April 1958"}],
-  "hero": {"asset":"history-hero","placeholder":false,"alt":"Pupul Jayakar in conversation"},
-  "intro": "NID's establishment in 1961 and the growth thereafter.",
-  "sections": [
-    {"title":"Origins","type":"text",
-     "body":"The establishment of NID was a result of several forces, both global and local. The late 1950s saw a confluence of these forces, and this time would be a significant one for Indian culture and education. This was a time of reappraisal and reconstruction in a newly independent India. A young nation was confronted with the mammoth task of nation building, of balancing age-old traditions with modern technology and ideas.\n\nIn 1955, Pupul Jayaker, the noted writer on Indian craft traditions and the founder of the Indian Handlooms and Handicrafts Export Council (HHEC) met the renowned American designer Charles Eames at the Museum of Modern Art in New York.",
-     "image":{"asset":"history-origins","placeholder":true},
-     "links":[{"label":"info@nid.edu","targetType":"email","address":"info@nid.edu"}]},
-    {"title":"The India Report","type":"text",
-     "body":"On April 7, 1958, the Eameses presented the India Report to the Government of India — a document that defined the spirit of design education in India. It advocated a problem-solving design consciousness linking learning with experience, and positioned the designer as a bridge between tradition and modernity.",
-     "links":[{"label":"The India Report (PDF)","targetType":"document"}]},
-    {"title":"The Sarabhais","type":"text",
-     "body":"Based on the recommendations made in the India Report, the Government of India with the assistance of the Ford Foundation and the Sarabhai family established the National Institute of Industrial Design, as it was originally called, as an autonomous all-India body in September 1961 at Ahmedabad.\n\nGautam Sarabhai and his sister Gira played a major role in the establishment and early years of NID, reviving the Bauhaus philosophy of learning by doing — a curriculum that endures to this day.\n\nNID has since grown into a multi-campus institution with campuses in Ahmedabad, Gandhinagar and Bengaluru, and has been declared an Institution of National Importance by Act of Parliament.",
-     "image":{"asset":"history-sarabhais","placeholder":true}},
-    {"title":"Convocation Through the Years","type":"text",
-     "body":"An archive of 48 convocation photographs spanning 1978 to 2025, one for each year the Institute has conferred its diplomas and degrees.",
-     "image":{"asset":"history-convocation","placeholder":true}},
-    {"title":"Past Directors","type":"text",
-     "body":"Vice-Admiral B. S. Soman — October 1970 to July 1972\n\nShri Ashoke Chatterjee — July 1975 to October 1985\n\nShri Vinay Jha — October 1985 to June 1989\n\nShri Vikas Satwalekar — July 1989 to June 2000\n\nDr. Darlie O. Koshy — June 2000 to October 2008\n\nShri Pradyumna Vyas — April 2009 to January 2019\n\nShri Praveen Nahar — April 2019 to October 2024",
-     "image":{"asset":"history-directors","placeholder":true}},
-    {"title":"Faculty Stalwarts","type":"cards","variant":"person",
-     "items":[
-       {"name":"Pupul Jayakar","asset":"stalwart-pupul-jayakar"},
-       {"name":"Aditi Ranjan","asset":"stalwart-aditi-ranjan"},
-       {"name":"Dashrath Patel","asset":"stalwart-dashrath-patel"},
-       {"name":"Gajanan Upadhyaya","asset":"stalwart-gajanan-upadhyaya"},
-       {"name":"H Kumar Vyas","asset":"stalwart-h-kumar-vyas"},
-       {"name":"MP Ranjan","asset":"stalwart-mp-ranjan"}
-     ],
-     "links":[{"label":"All Faculty Stalwarts"}]},
-    {"title":"More in About NID","type":"links",
-     "items":[{"label":"Director’s Message","page":"about-nid/directors-message"},{"label":"Charter","page":"about-nid/charter"},{"label":"Campuses","page":"about-nid/campuses"},{"label":"News & Events","page":"about-nid/news-and-events"}]}
-  ]
-},
-{
-  "title": "Campuses", "slug": "about-nid/campuses", "parent": "about-nid",
-  "subPages": [
-    {"label":"Ahmedabad","page":"about-nid/campuses/ahmedabad"},
-    {"label":"Gandhinagar","page":"about-nid/campuses/gandhinagar"},
-    {"label":"Bengaluru","page":"about-nid/campuses/bengaluru"}
-  ],
-  "hero": {"asset":"campuses-hero","placeholder":true},
-  "intro": "As part of extension plan, NID has three campuses located in Ahmedabad, Gandhinagar and Bengaluru.",
-  "sections": [
-    {"title":"About","type":"text",
-     "body":"The National Institute of Design (NID) is internationally acclaimed as one of the foremost multi-disciplinary institutions in the field of design education and research. The institute functions as an autonomous body under the department of Industrial Policy & Promotion, Ministry of Commerce & Industry, Government of India.\n\nNID has been declared 'Institution of National Importance' by the Act of Parliament, by virtue of the National Institute of Design Act 2014. NID is recognised by the Dept. of Scientific & Industrial Research (DSIR) under Ministry of Science & Technology, Government of India, as a scientific and industrial design research organisation.\n\nNID has been a pioneer in industrial design education after Bauhaus and Ulm in Germany and is known for its pursuit of design excellence to make Designed in India, Made for the World a reality.",
-     "image":{"asset":"campus-ahmedabad-wide","placeholder":false},
-     "links":[{"label":"info@nid.edu","targetType":"email","address":"info@nid.edu"},{"label":"+91 79 2662 9500","targetType":"phone","address":"+91 79 2662 9500"}]},
-    {"title":"The Three Campuses","type":"text",
-     "body":"NID Ahmedabad Campus is situated in Ahmedabad city, in Gujarat State and it offers 8 Bachelor Degree Programmes and 7 Master Degree Programmes (2.5 years). Recently Ph.D Programme has been introduced at NID Ahmedabad Campus.\n\nNID Gandhinagar Campus is situated in the city of Gandhinagar, in Gujarat State and it offers 7 masters programmes of 2.5 years.\n\nNID Bengaluru Campus is situated in the city of Bengaluru, in Karnataka State. Bengaluru Campus offers 5 masters programmes (2.5 years).",
-     "image":{"asset":"campus-gandhinagar-wide","placeholder":false}},
-    {"title":"Visiting NID","type":"text",
-     "body":"All NID campuses are open to visitors throughout the year from 9am to 6pm, Monday to Friday (apart from public holidays). Visitors will have to obtain a Visitor's Pass at the Main Gate to enter the campus.\n\nIf you are visiting us in a group with prior appointment, NID can arrange a Guided Tour of Campus.",
-     "image":{"asset":"campus-bengaluru-wide","placeholder":false}},
-    {"title":"More in About NID","type":"links",
-     "items":[{"label":"Director’s Message","page":"about-nid/directors-message"},{"label":"Charter","page":"about-nid/charter"},{"label":"History","page":"about-nid/history"},{"label":"News & Events","page":"about-nid/news-and-events"}]}
-  ]
-},
-{
-  "title": "Ahmedabad", "slug": "about-nid/campuses/ahmedabad", "parent": "about-nid/campuses",
-  "keyInfo": [{"label":"Established","value":"1961"},{"label":"Programmes","value":"8 B.Des · 7 M.Des · Ph.D"}],
-  "hero": {"asset":"campus-ahmedabad-hero","placeholder":false},
-  "intro": "NID Ahmedabad Campus offers 8 Bachelor Degree Programmes and 7 Master Degree Programmes. Recently a Doctoral Programme in Design has been introduced.",
-  "sections": [
-    {"title":"About the Campus","type":"text",
-     "body":"The National Institute of Design (NID) is internationally acclaimed as one of the foremost multi-disciplinary institutions in the field of design education and research.\n\nNID has been a pioneer in industrial design education after Bauhaus and Ulm in Germany, and is known for its pursuit of design excellence to make Designed in India, Made for the World a reality.\n\nThe Ahmedabad campus is the founding campus of the Institute, established in 1961 at Paldi.",
-     "image":{"asset":"ahmedabad-about","placeholder":true},
-     "links":[{"label":"info@nid.edu","targetType":"email","address":"info@nid.edu"},{"label":"+91 79 2662 9500","targetType":"phone","address":"+91 79 2662 9500"}]},
-    {"title":"Services & Centres","type":"links",
-     "items":[{"label":"Integrated Design Services"},{"label":"Outreach Programmes"},{"label":"Industry & Online Programmes"},{"label":"Railway Design Centre"},{"label":"Design Clinic for MSME"}]},
-    {"title":"Workshops, Labs & Facilities","type":"text",
-     "body":"Not published on the campus page at present — unlike Gandhinagar, the Ahmedabad campus page carries no facilities inventory.\n\nContent to be supplied by NID.",
-     "image":{"asset":"ahmedabad-facilities","placeholder":true}},
-    {"title":"Disciplines","type":"cards","variant":"thumb",
-     "items":[
-       {"name":"Bachelor of Design (B.Des)","meta":"8 disciplines","asset":"disc-bdes"},
-       {"name":"Master of Design (M.Des)","meta":"7 disciplines","asset":"disc-mdes"},
-       {"name":"Ph.D","meta":"Doctoral programme","asset":"disc-phd"}
-     ]},
-    {"title":"Other campuses","type":"links",
-     "items":[{"label":"Gandhinagar","page":"about-nid/campuses/gandhinagar"},{"label":"Bengaluru","page":"about-nid/campuses/bengaluru"}]}
-  ]
-},
-{
-  "title": "Gandhinagar", "slug": "about-nid/campuses/gandhinagar", "parent": "about-nid/campuses",
-  "keyInfo": [{"label":"Programmes","value":"7 M.Des disciplines"},{"label":"Address","value":"GH-0, Extension Road, Nr. Infocity"}],
-  "hero": {"asset":"campus-gandhinagar-hero","placeholder":false},
-  "intro": "Located in the capital city of Gandhinagar, Gujarat, NID Gandhinagar campus offers a full-time residential programme in M.Des across seven disciplines.",
-  "sections": [
-    {"title":"About the Campus","type":"text",
-     "body":"Located in the capital city of Gandhinagar, Gujarat, NID- Gandhinagar campus offers full time residential program in M.Des (Master of Design) across seven disciplines, at the moment.\n\nThe campus also has an all-new auditorium/amphi-theatre for holding conferences and cultural events besides a Design Gallery that witnesses frequent exhibitions.\n\nThe campus is also the home to the ICNF (Innovation Centre for Natural Fibre), that is actively engaged in finding design applications for natural fibres.",
-     "image":{"asset":"gandhinagar-about","placeholder":true},
-     "links":[{"label":"pgcampus@nid.edu","targetType":"email","address":"pgcampus@nid.edu"},{"label":"+91 79 2326 5500","targetType":"phone","address":"+91 79 2326 5500"}]},
-    {"title":"Workshops, Labs & Facilities","type":"text",
-     "body":"The campus houses facilities and resources that provide students with a gamut of learning opportunities and help them enhance their creativity:\n\nKnowledge Management Centre · Central workshop (wood / metal) · Laser cutting · CNC machine · 3D printing · Digital lab · Discipline-specific labs and studios\n\nAuditorium and amphi-theatre · Design Gallery · Innovation Centre for Natural Fibre (ICNF)",
-     "image":{"asset":"gandhinagar-facilities","placeholder":true},
-     "links":[{"label":"Knowledge Management Centre"},{"label":"Innovation Centre for Natural Fibre"}]},
-    {"title":"Disciplines","type":"cards","variant":"thumb",
-     "items":[
-       {"name":"Lifestyle Accessory Design","meta":"M.Des","asset":"disc-lifestyle-accessory"},
-       {"name":"Apparel Design","meta":"M.Des","asset":"disc-apparel"},
-       {"name":"New Media Design","meta":"M.Des","asset":"disc-new-media"},
-       {"name":"Toy and Game Design","meta":"M.Des","asset":"disc-toy-game"},
-       {"name":"Photography Design","meta":"M.Des","asset":"disc-photography"},
-       {"name":"Strategic Design Management","meta":"M.Des","asset":"disc-strategic-design"},
-       {"name":"Transportation & Automobile Design","meta":"M.Des","asset":"disc-transportation"}
-     ]},
-    {"title":"Other campuses","type":"links",
-     "items":[{"label":"Ahmedabad","page":"about-nid/campuses/ahmedabad"},{"label":"Bengaluru","page":"about-nid/campuses/bengaluru"}]}
-  ]
-},
-{
-  "title": "Bengaluru", "slug": "about-nid/campuses/bengaluru", "parent": "about-nid/campuses",
-  "keyInfo": [{"label":"Inaugurated","value":"March 2006 · 2-acre site"},{"label":"Programmes","value":"5 M.Des disciplines"}],
-  "hero": {"asset":"campus-bengaluru-hero","placeholder":false},
-  "intro": "NID Bengaluru campus is one of the three campuses of the National Institute of Design, Ahmedabad, located in Yeshvanthpur in north-western Bengaluru.",
-  "sections": [
-    {"title":"About the Campus","type":"text",
-     "body":"NID Bengaluru campus is one of the three campuses of the National Institute of Design, Ahmedabad. It is located in Yeshvanthpur, a sub-locality of north western part of Bengaluru city in the state of Karnataka. It was set up as a joint initiative of and funding from the Department of Industrial Policy and Promotion (DIPP), Ministry of Commerce and Industry and the Ministry of Information Technology, Government of India. The campus was inaugurated in March 2006 and today stands as a compact set-up on a small 2-acre site.\n\nThe campus commenced with two PG programmes namely Design for Digital experience and Design for Retail experience from the academic year 2007-2008.\n\nBeing in Bengaluru, the IT city of India, the educational and research activities at the campus are in sync with the city ecosystem and focus on bringing digital inclusion in their products and processes across the various disciplines.",
-     "image":{"asset":"bengaluru-about","placeholder":true},
-     "links":[{"label":"bengaluru_campus@nid.edu","targetType":"email","address":"bengaluru_campus@nid.edu"},{"label":"+91 80 2972 5006","targetType":"phone","address":"+91 80 2972 5006"}]},
-    {"title":"Disciplines","type":"cards","variant":"thumb",
-     "items":[
-       {"name":"Design for Retail Experience","meta":"M.Des","asset":"disc-retail"},
-       {"name":"Digital Game Design","meta":"M.Des","asset":"disc-digital-game"},
-       {"name":"Information Design","meta":"M.Des","asset":"disc-information"},
-       {"name":"Interaction Design","meta":"M.Des","asset":"disc-interaction"},
-       {"name":"Universal Design","meta":"M.Des","asset":"disc-universal"}
-     ]},
-    {"title":"Research Labs","type":"text",
-     "body":"In the past faculty members of the campus have taken up several research projects under various labs:\n\ne-kalpa lab — Digital Online Learning environment for Design, funded by the Ministry of Human Resources.\n\nDigital Hampi Lab — Digital Reconstruction of Hampi monuments and Bazaars, funded by the Department of Science and Technology.\n\nThe campus has collaborated with various industry partners on research initiatives and is actively seeking to build industry-academia research collaborations.",
-     "image":{"asset":"bengaluru-labs","placeholder":true}},
-    {"title":"Other campuses","type":"links",
-     "items":[{"label":"Ahmedabad","page":"about-nid/campuses/ahmedabad"},{"label":"Gandhinagar","page":"about-nid/campuses/gandhinagar"}]}
-  ]
-},
-{
-  "title": "News & Events", "slug": "about-nid/news-and-events", "parent": "about-nid",
-  "hero": {"asset":"news-hero","placeholder":true},
-  "sections": [
-    {"title":"2026","type":"mosaic",
-     "items":[
-       {"overline":"latest","name":"North-East Artisans Honoured by Hon’ble President of India at Rashtrapati Bhavan","meta":"19 May 2026","asset":"news-north-east","featured":true,"page":"about-nid/news-and-events/article-north-east-artisans"},
-       {"name":"The 45th Convocation, National Institute of Design, Ahmedabad","meta":"22 January 2026","asset":"news-convocation","page":"about-nid/news-and-events/article-template"},
-       {"name":"Drawing Dialogues happening at NID very soon. Register!","meta":"July 23 2026","asset":"news-drawing-dialogues"}
-     ]},
-    {"title":"2025","type":"mosaic",
-     "items":[
-       {"name":"Placeholder article","meta":"2025","asset":"news-placeholder-a","_todo":"Repeated placeholder card on the Figma board."},
-       {"name":"Placeholder article","meta":"2025","asset":"news-placeholder-b","_todo":"Repeated placeholder card on the Figma board."},
-       {"name":"Placeholder article","meta":"2025","asset":"news-placeholder-c","_todo":"Repeated placeholder card on the Figma board."}
-     ]},
-    {"title":"Archive","type":"links",
-     "items":[{"label":"2024"},{"label":"2023"}],
-     "links":[{"label":"Older"}]},
-    {"title":"More in About NID","type":"links",
-     "items":[{"label":"Director’s Message","page":"about-nid/directors-message"},{"label":"Charter","page":"about-nid/charter"},{"label":"History","page":"about-nid/history"},{"label":"Campuses","page":"about-nid/campuses"}]}
-  ]
-},
-{
-  "title": "North-East Artisans Honoured by Hon’ble President of India at Rashtrapati Bhavan",
-  "slug": "about-nid/news-and-events/article-north-east-artisans", "parent": "about-nid/news-and-events",
-  "keyInfo": [{"label":"Date","value":"19 May 2026"},{"label":"Venue","value":"Rashtrapati Bhavan, New Delhi"}],
-  "hero": {"asset":"news-north-east","placeholder":false},
-  "intro": "An 80-member delegation of artisans and weavers from all eight North Eastern states called on the President of India, Smt Droupadi Murmu, at Rashtrapati Bhavan. The group had crafted the invitation kit for the ‘At Home’ Reception held on 26 January 2026 — work carried out with technical support from the National Institute of Design.",
-  "sections": [
-    {"title":"The Delegation","type":"text",
-     "body":"The delegation numbered eighty, drawn from all eight North Eastern states and made up predominantly of women from remote districts. Their work was presented to the President at Rashtrapati Bhavan, after which the group was taken on a guided tour of the estate, including the Amrit Udyan gardens.\n\nAddressing the artisans, the President described them as the shining example of the living heritage of the nation, and spoke of the need to support them so that their artistic knowledge reaches as many people as possible and they can become self-reliant. She urged the artisans to carry their traditions to younger generations.",
-     "image":{"asset":"ne-delegation","placeholder":true},
-     "links":[{"label":"Rashtrapati Bhavan","targetType":"external","url":"https://rashtrapatibhavan.gov.in"},{"label":"cmr@nid.edu","targetType":"email","address":"cmr@nid.edu"},{"label":"International Centre for Indian Crafts"}]},
-    {"title":"Woven Threads × Noklak","type":"text",
-     "body":"Artisans from Noklak district in Nagaland worked with Ehlon niu — stinging nettle and wild rhea fibres — retted, spun and woven by hand. Team Woven Threads × Noklak presented handcrafted home textiles from their newest collection, comprising three pillow covers.\n\nWoven Threads is a design label engaged in artisanal textile design and manufacturing in collaboration with local communities, and led the Noklak contingent within the wider delegation.",
-     "image":{"asset":"ne-woven-threads","placeholder":true}},
-    {"title":"The Invitation Kit","type":"text",
-     "body":"The kit was produced for the ‘At Home’ Reception held at Rashtrapati Bhavan on 26 January 2026. It carried the artistic and cultural heritage of the North Eastern region into a piece of official state correspondence — placing craft from eight states directly into the hands of every guest, rather than displaying it at a remove."},
-    {"title":"The Institute’s Role","type":"text",
-     "body":"NID provided technical support to the initiative, undertaken under the aegis of Rashtrapati Bhavan. The engagement continues the Institute’s long association with craft communities, in which design input is directed at the making, finishing and presentation of work that is already the product of generations of skill.",
-     "image":{"asset":"ne-institute-role","placeholder":true},
-     "links":[{"label":"Center for Bamboo Initiatives"},{"label":"Smart Handloom Innovation Centre"}]},
-    {"title":"More news","type":"links",
-     "items":[{"label":"The 45th Convocation","page":"about-nid/news-and-events/article-template"},{"label":"All News & Events","page":"about-nid/news-and-events"}]}
-  ]
-},
-{
-  "title": "The 45th Convocation, National Institute of Design, Ahmedabad",
-  "slug": "about-nid/news-and-events/article-template", "parent": "about-nid/news-and-events",
-  "keyInfo": [{"label":"Date","value":"22 January 2026"},{"label":"Venue","value":"NID Gandhinagar Campus"}],
-  "hero": {"asset":"news-convocation","placeholder":true},
-  "intro": "The 45th Convocation of the National Institute of Design, Ahmedabad marks a significant academic and institutional milestone. Dr V. Narayanan, Chairman of the Indian Space Research Organisation, will serve as Chief Guest and deliver the Convocation Address.",
-  "sections": [
-    {"title":"The Ceremony","type":"text",
-     "body":"Beyond the ceremony, the campus will host Graduate Show 2026, Young Designer, Design Panorama, Annual Design Show 2026, Design Street, and the Craft Bazaar. These events showcase student work, interdisciplinary inquiry, and collaborations including Integrated Design Services, the National Design Business Incubator, and Research & Development activities.\n\nThe convocation ceremony will stream at 5:00 PM on NID's YouTube channel.",
-     "image":{"asset":"convocation-ceremony","placeholder":true},
-     "links":[{"label":"Watch the live stream","targetType":"external","url":"https://www.youtube.com/@nidindia"},{"label":"cmr@nid.edu","targetType":"email","address":"cmr@nid.edu"}]},
-    {"title":"Graduate Show 2026","type":"text",
-     "body":"The Graduate Show theme encompasses six interconnected areas:\n\nPeople & Society — emphasising human needs and community.\n\nCulture & Craft — honouring India's traditions.\n\nLiving & Lifestyle — reimagining everyday practices.\n\nTechnology & Interaction — highlighting digital tools and accessibility.\n\nSystems, Infrastructure & Futures — addressing large-scale challenges.\n\nNature & Sustainability — foregrounding ecological responsibility.",
-     "image":{"asset":"convocation-graduate-show","placeholder":true}},
-    {"title":"Design Panorama","type":"text",
-     "body":"The Design Panorama presents an immersive digital journey through NID's history across its three campuses — Ahmedabad, Gandhinagar and Bengaluru — through curated presentations and student projects."},
-    {"title":"Craft Bazaar","type":"text",
-     "body":"The Craft Bazaar runs 21–23 January, 10:00 AM to 10:00 PM near the Academic Block, featuring artisan stalls and student-led shops.",
-     "image":{"asset":"convocation-craft-bazaar","placeholder":true},
-     "links":[{"label":"Young Designers 2026"},{"label":"Annual Design Show"}]},
-    {"title":"More news","type":"links",
-     "items":[{"label":"North-East Artisans Honoured","page":"about-nid/news-and-events/article-north-east-artisans"},{"label":"All News & Events","page":"about-nid/news-and-events"}]}
-  ]
-}
+    {
+      "title": "National Institute of Design",
+      "slug": "",
+      "template": "home",
+      "_source": "Figma board 28:2175 (01 NID Home — Landing) — a 4x5 mosaic of 330px tiles.",
+      "sections": [
+        {
+          "type": "tiles",
+          "title": "",
+          "items": [
+            {
+              "kind": "statement",
+              "text": "Curiosity. Craft. Purpose. Design that shapes tomorrow."
+            },
+            {
+              "kind": "blank",
+              "span": 2,
+              "asset": "home-hero",
+              "_todo": "Hero card is empty on the board — image or film to come."
+            },
+            {
+              "kind": "pairs",
+              "heading": "Study at NID",
+              "page": "studyofnid",
+              "pairs": [
+                [
+                  "B.Des",
+                  "4 years at Ahmedabad"
+                ],
+                [
+                  "M.Des",
+                  "2 years at Ahmedabad, Gandhinagar & Bangalore"
+                ],
+                [
+                  "PH.D",
+                  "Ahmedabad"
+                ],
+                [
+                  "FDP",
+                  "2 years at Ahmedabad"
+                ]
+              ]
+            },
+            {
+              "kind": "pairs",
+              "overline": "academic calendar",
+              "pairs": [
+                [
+                  "Placement week",
+                  "June 1 to June 5 2026"
+                ],
+                [
+                  "Orientation for M.Des & B.Des Batch 2026-2027",
+                  "July 9 & 10 2026"
+                ],
+                [
+                  "First Semester Commences",
+                  "Mon, July 13 2026"
+                ],
+                [
+                  "Faculty Meetings",
+                  "Fri, Aug 7 2026 & Fri, Oct 16 2026"
+                ]
+              ],
+              "action": "All notifications"
+            },
+            {
+              "kind": "list",
+              "overline": "news & events",
+              "asset": "home-news",
+              "page": "about-nid/news-and-events",
+              "items": [
+                "North-East Artisans Honoured by Hon’ble President of India at Rashtrapati Bhavan",
+                "Inauguration of the Incubation and Innovation Centre at NID Gandhinagar Campus",
+                "NID opens its KMC to the public for membership."
+              ],
+              "action": "All news"
+            },
+            {
+              "kind": "feature",
+              "serif": true,
+              "asset": "home-national-importance",
+              "heading": "Institute of National Importance",
+              "text": "Passed unanimously by Parliament, a first for Indian design.",
+              "action": "Read the act"
+            },
+            {
+              "kind": "item",
+              "overline": "notable alumni",
+              "asset": "home-alumni",
+              "heading": "Sujata Keshavan",
+              "text": "GD Class of 1984. Pioneered brand design in India, co-founding Ray+Keshavan and shaping identities."
+            },
+            {
+              "kind": "blank"
+            },
+            {
+              "kind": "item",
+              "overline": "workshop",
+              "asset": "home-drawing-dialogues",
+              "heading": "Drawing Dialogues",
+              "text": "Oct 30 & 31 2026"
+            },
+            {
+              "kind": "item",
+              "overline": "pride of nid",
+              "asset": "home-pride",
+              "heading": "Dr. Lakshmi Murthy",
+              "text": "From ceramics to menstrual health — bringing dignity to rural India, one reusable pad at a time."
+            },
+            {
+              "kind": "feature",
+              "asset": "home-campuses",
+              "heading": "Campuses",
+              "page": "about-nid/campuses"
+            },
+            {
+              "kind": "item",
+              "overline": "call for papers",
+              "asset": "home-shifting-paradigms",
+              "heading": "Shifting Paradigms",
+              "text": "Feb 23 – 25 2027"
+            },
+            {
+              "kind": "quote",
+              "asset": "home-director",
+              "text": "“The World of Indian Design is now in a leadership position to contribute to the Design of the World…”",
+              "action": "Director’s note",
+              "page": "about-nid/directors-message"
+            },
+            {
+              "kind": "blank"
+            },
+            {
+              "kind": "feature",
+              "asset": "home-stalwarts",
+              "heading": "Faculty Stalwarts",
+              "text": "Built by Sarabhais and shaped by Pupul Jayakar, Aditi & MP Ranjan, H. Kumar Vyas, Dashrath Patel and Gajanan Upadhyaya, NID has a long legacy.",
+              "action": "Learn more",
+              "page": "about-nid/history"
+            },
+            {
+              "kind": "feature",
+              "asset": "home-research",
+              "heading": "Research & Publications"
+            },
+            {
+              "kind": "blank"
+            },
+            {
+              "kind": "item",
+              "overline": "young designers",
+              "asset": "home-young-designers",
+              "heading": "Hybrid Board Game for Business Thinking",
+              "text": "Manish Yadav"
+            },
+            {
+              "kind": "list",
+              "asset": "home-kmc",
+              "heading": "Knowledge Management Centre",
+              "micro": true,
+              "items": [
+                "The India Report",
+                "Design of the Indian Subcontinent",
+                "Designing Design",
+                "A Pattern Language",
+                "Visual Thinking",
+                "Hand Made in India",
+                "Design — A Primer",
+                "The Vision of the Past, the Promise of the Future",
+                "Design as Art",
+                "Film as Art",
+                "Thoughtless Acts?"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "About NID",
+      "slug": "about-nid",
+      "template": "primary",
+      "subPages": [
+        {
+          "label": "NID’s ‘Mandate’",
+          "page": "about-nid/charter"
+        },
+        {
+          "label": "Director’s Message",
+          "page": "about-nid/directors-message"
+        },
+        {
+          "label": "History",
+          "page": "about-nid/history"
+        },
+        {
+          "label": "Campuses",
+          "page": "about-nid/campuses"
+        },
+        {
+          "label": "News & Events",
+          "page": "about-nid/news-and-events"
+        }
+      ],
+      "hero": {
+        "asset": "image-35",
+        "placeholder": false,
+        "alt": "Students at work in an NID studio"
+      },
+      "intro": "The establishment of NID was a result of several forces, both global and local. The late 1950s saw a confluence of these forces, and this time would be a significant one for Indian culture and education. This was a time of reappraisal and reconstruction in a newly independent India. A young nation was confronted with the mammoth task of nation building, of balancing age-old traditions with modern technology and ideas.",
+      "sections": [
+        {
+          "title": "News & Events",
+          "type": "mosaic",
+          "items": [
+            {
+              "overline": "latest",
+              "name": "North-East Artisans Honoured by Hon’ble President of India at Rashtrapati Bhavan",
+              "asset": "news-north-east",
+              "featured": true,
+              "page": "about-nid/news-and-events/article-north-east-artisans"
+            },
+            {
+              "name": "Drawing Dialogues happening at NID very soon. Register!",
+              "meta": "July 23 2026",
+              "asset": "news-drawing-dialogues"
+            },
+            {
+              "name": "Lorem ipsum",
+              "meta": "July 23 2026",
+              "asset": "news-placeholder",
+              "_todo": "Copy not written on the Figma board."
+            }
+          ],
+          "links": [
+            {
+              "label": "All News & Events",
+              "page": "about-nid/news-and-events"
+            }
+          ]
+        },
+        {
+          "title": "Campuses",
+          "type": "cards",
+          "variant": "campus",
+          "items": [
+            {
+              "name": "Ahmedabad",
+              "asset": "campus-ahmedabad",
+              "page": "about-nid/campuses/ahmedabad"
+            },
+            {
+              "name": "Gandhinagar",
+              "asset": "campus-gandhinagar",
+              "page": "about-nid/campuses/gandhinagar"
+            },
+            {
+              "name": "Bangalore",
+              "asset": "campus-bengaluru",
+              "page": "about-nid/campuses/bengaluru",
+              "_todo": "Board says Bangalore; campus page says Bengaluru."
+            }
+          ]
+        },
+        {
+          "title": "Student Awards",
+          "type": "cards",
+          "variant": "person",
+          "items": [
+            {
+              "name": "Rishaya Palkhivala",
+              "note": "A short film — ‘Sorry For Your Loss’ — by film and video Communication (FVC) M Des student at the National Institute of Design (NID) Ahmedabad was awarded the best film under the National Category of the Satyajit Ray Centenary Student’s Short Film Competition on the theme ‘Realism’.",
+              "asset": "award-rishaya"
+            },
+            {
+              "name": "Mayank Kumar",
+              "note": "Mayank has been awarded the prestigious Dean's Excellence Award for developing an AI-powered accessibility tool that helps visually impaired students navigate campus independently.",
+              "asset": "award-mayank"
+            }
+          ],
+          "links": [
+            {
+              "label": "Visit Student Awards Gallery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Charter",
+      "slug": "about-nid/charter",
+      "parent": "about-nid",
+      "keyInfo": [
+        {
+          "label": "Purpose",
+          "value": "NID’s mandate"
+        },
+        {
+          "label": "Status",
+          "value": "Institution of National Importance, NID Act 2014"
+        }
+      ],
+      "hero": {
+        "asset": "hero-charter",
+        "placeholder": true
+      },
+      "intro": "The mandate for NID is to offer world-class design education and to promote design awareness and application towards raising the quality of life by and through Education to create design professionals of excellence to help meet India's diverse design needs.",
+      "sections": [
+        {
+          "title": "Mandate",
+          "type": "text",
+          "body": "The mandate for NID is to offer world-class design education and to promote design awareness and application towards raising the quality of life by and through Education to create design professionals of excellence to help meet India's diverse design needs.\n\nNID has been declared 'Institution of National Importance' by the Act of Parliament, by virtue of the National Institute of Design Act 2014.",
+          "image": {
+            "asset": "charter-mandate",
+            "placeholder": true
+          },
+          "links": [
+            {
+              "label": "info@nid.edu",
+              "targetType": "email",
+              "address": "info@nid.edu"
+            },
+            {
+              "label": "+91 79 2662 9500",
+              "targetType": "phone",
+              "address": "+91 79 2662 9500"
+            },
+            {
+              "label": "NID Act & Statutes",
+              "targetType": "document"
+            }
+          ]
+        },
+        {
+          "title": "The Ten Mandates",
+          "type": "text",
+          "body": "To train design trainers for other design and design-related institutions and positions in the 21st century as global leaders in Design Education and Research.\n\nEnsuring the expansion in the number of quality design professionals and faculty, through existing and new institutional mechanisms.\n\nBecoming a repository of design knowledge, experience and information on products, systems, materials, design and production processes.\n\nEncouraging the design of products and systems of everyday use in a spirit of restless search for indigenous design solutions.\n\nTo undertake fundamental and applied research to create cutting edge knowledge in the areas of design.\n\nTo help place designers in key sectors of national need for benchmarking of standards.\n\nTo offer integrated design consultancy services and cutting-edge design solutions.\n\nProviding design inputs from the point of view of using design as an integrating force.\n\nTo humanise technology and integrate the physical with the virtual and digital worlds.\n\nTo provide design intervention for craft, handloom, rural technology, small, medium and large-scale enterprises.",
+          "image": {
+            "asset": "charter-mandates",
+            "placeholder": true
+          }
+        },
+        {
+          "title": "More in About NID",
+          "type": "links",
+          "items": [
+            {
+              "label": "Director’s Message",
+              "page": "about-nid/directors-message"
+            },
+            {
+              "label": "History",
+              "page": "about-nid/history"
+            },
+            {
+              "label": "Campuses",
+              "page": "about-nid/campuses"
+            },
+            {
+              "label": "News & Events",
+              "page": "about-nid/news-and-events"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Director’s Message",
+      "slug": "about-nid/directors-message",
+      "parent": "about-nid",
+      "hero": {
+        "asset": "director-portrait",
+        "placeholder": true
+      },
+      "intro": "It is truly an honour to serve this great institution that has always stood up to emerging local and global challenges through the power of design. ‘The World of Indian Design’ is now in a leadership position to contribute to the ‘Design of the World’. We are in the process of taking up many collaborative initiatives with support from public involved with the nation’s economic and social sectors. Before we embark on these challenges afresh, we need some reflection and rethinking on the fundamental notions of ‘Design’ in the Indian context.",
+      "sections": [
+        {
+          "title": "",
+          "type": "text",
+          "body": "There is a lot of discussion on ‘wicked problems in design thinking’. Rarely do we look at design or a particular conception of design itself as a ‘wicked’ problem. The mainstream notion of design centered around the transformation of the artificial world for human consumption takes a slightly extreme end of the spectrum perspective, instead of an entire spectrum ranging from art, craft, engineering, architecture, design and many more. Being an alumnus of Visva-Bharati and NID, I am fortunate to empathize with both viewpoints. However, contemporary design has a lot to learn from the holistic, integrated, and evolved notions of art, craft, engineering, and architecture. The concept of kala evolved in the Indian subcontinent over several thousand years and does not explicitly distinguish between fine arts and practical arts. Similarly, manifestations of arts, crafts, architecture, and traditional engineering reflect much more diversity across India's diverse regions and cultures compared to contemporary design.\n\nEven within Europe from where design has evolved, the word ‘design’ or its equivalent takes on a different meaning in each country. For example, the German concept of ‘Design’ is very different from the Italian notion of ‘Disegno’. There is a need to redefine our idea of design that is culturally rooted and that can address diverse challenges of different regions in the Indian context.\n\nThe second concern I have relates to the ‘purpose of design’. All forms of design aim to improve the human condition through creation, modification, and transformation of the physical world. Unfortunately, this aim is often mediated by powerful personal, social, economic, and political forces leading to compromised design outcomes. Design with a strong connection to materialistic consumption supported by market forces, needs to be re-envisioned for a society that has always had deep-rooted spiritual values at the core. Design is now recognized as a transformative force for improving the ‘standard of living’ for many. For a welfare state such as India, this also needs to be complemented with equal, if not more, emphasis on improving the ‘quality of life’ for all. Hence, there is a need for a paradigm shift in focus on improving the standard of living for few to improving the quality of life of many."
+        },
+        {
+          "title": "More in About NID",
+          "type": "links",
+          "items": [
+            {
+              "label": "Charter",
+              "page": "about-nid/charter"
+            },
+            {
+              "label": "History",
+              "page": "about-nid/history"
+            },
+            {
+              "label": "Campuses",
+              "page": "about-nid/campuses"
+            },
+            {
+              "label": "News & Events",
+              "page": "about-nid/news-and-events"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "History",
+      "slug": "about-nid/history",
+      "parent": "about-nid",
+      "keyInfo": [
+        {
+          "label": "Established",
+          "value": "September 1961 · Ahmedabad"
+        },
+        {
+          "label": "India Report",
+          "value": "Presented 7 April 1958"
+        }
+      ],
+      "hero": {
+        "asset": "history-hero",
+        "placeholder": false,
+        "alt": "Pupul Jayakar in conversation"
+      },
+      "intro": "NID's establishment in 1961 and the growth thereafter.",
+      "sections": [
+        {
+          "title": "Origins",
+          "type": "text",
+          "body": "The establishment of NID was a result of several forces, both global and local. The late 1950s saw a confluence of these forces, and this time would be a significant one for Indian culture and education. This was a time of reappraisal and reconstruction in a newly independent India. A young nation was confronted with the mammoth task of nation building, of balancing age-old traditions with modern technology and ideas.\n\nIn 1955, Pupul Jayaker, the noted writer on Indian craft traditions and the founder of the Indian Handlooms and Handicrafts Export Council (HHEC) met the renowned American designer Charles Eames at the Museum of Modern Art in New York.",
+          "image": {
+            "asset": "history-origins",
+            "placeholder": true
+          },
+          "links": [
+            {
+              "label": "info@nid.edu",
+              "targetType": "email",
+              "address": "info@nid.edu"
+            }
+          ]
+        },
+        {
+          "title": "The India Report",
+          "type": "text",
+          "body": "On April 7, 1958, the Eameses presented the India Report to the Government of India — a document that defined the spirit of design education in India. It advocated a problem-solving design consciousness linking learning with experience, and positioned the designer as a bridge between tradition and modernity.",
+          "links": [
+            {
+              "label": "The India Report (PDF)",
+              "targetType": "document"
+            }
+          ]
+        },
+        {
+          "title": "The Sarabhais",
+          "type": "text",
+          "body": "Based on the recommendations made in the India Report, the Government of India with the assistance of the Ford Foundation and the Sarabhai family established the National Institute of Industrial Design, as it was originally called, as an autonomous all-India body in September 1961 at Ahmedabad.\n\nGautam Sarabhai and his sister Gira played a major role in the establishment and early years of NID, reviving the Bauhaus philosophy of learning by doing — a curriculum that endures to this day.\n\nNID has since grown into a multi-campus institution with campuses in Ahmedabad, Gandhinagar and Bengaluru, and has been declared an Institution of National Importance by Act of Parliament.",
+          "image": {
+            "asset": "history-sarabhais",
+            "placeholder": true
+          }
+        },
+        {
+          "title": "Convocation Through the Years",
+          "type": "text",
+          "body": "An archive of 48 convocation photographs spanning 1978 to 2025, one for each year the Institute has conferred its diplomas and degrees.",
+          "image": {
+            "asset": "history-convocation",
+            "placeholder": true
+          }
+        },
+        {
+          "title": "Past Directors",
+          "type": "text",
+          "body": "Vice-Admiral B. S. Soman — October 1970 to July 1972\n\nShri Ashoke Chatterjee — July 1975 to October 1985\n\nShri Vinay Jha — October 1985 to June 1989\n\nShri Vikas Satwalekar — July 1989 to June 2000\n\nDr. Darlie O. Koshy — June 2000 to October 2008\n\nShri Pradyumna Vyas — April 2009 to January 2019\n\nShri Praveen Nahar — April 2019 to October 2024",
+          "image": {
+            "asset": "history-directors",
+            "placeholder": true
+          }
+        },
+        {
+          "title": "Faculty Stalwarts",
+          "type": "cards",
+          "variant": "person",
+          "items": [
+            {
+              "name": "Pupul Jayakar",
+              "asset": "stalwart-pupul-jayakar"
+            },
+            {
+              "name": "Aditi Ranjan",
+              "asset": "stalwart-aditi-ranjan"
+            },
+            {
+              "name": "Dashrath Patel",
+              "asset": "stalwart-dashrath-patel"
+            },
+            {
+              "name": "Gajanan Upadhyaya",
+              "asset": "stalwart-gajanan-upadhyaya"
+            },
+            {
+              "name": "H Kumar Vyas",
+              "asset": "stalwart-h-kumar-vyas"
+            },
+            {
+              "name": "MP Ranjan",
+              "asset": "stalwart-mp-ranjan"
+            }
+          ],
+          "links": [
+            {
+              "label": "All Faculty Stalwarts"
+            }
+          ]
+        },
+        {
+          "title": "More in About NID",
+          "type": "links",
+          "items": [
+            {
+              "label": "Director’s Message",
+              "page": "about-nid/directors-message"
+            },
+            {
+              "label": "Charter",
+              "page": "about-nid/charter"
+            },
+            {
+              "label": "Campuses",
+              "page": "about-nid/campuses"
+            },
+            {
+              "label": "News & Events",
+              "page": "about-nid/news-and-events"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Campuses",
+      "slug": "about-nid/campuses",
+      "parent": "about-nid",
+      "subPages": [
+        {
+          "label": "Ahmedabad",
+          "page": "about-nid/campuses/ahmedabad"
+        },
+        {
+          "label": "Gandhinagar",
+          "page": "about-nid/campuses/gandhinagar"
+        },
+        {
+          "label": "Bengaluru",
+          "page": "about-nid/campuses/bengaluru"
+        }
+      ],
+      "hero": {
+        "asset": "campuses-hero",
+        "placeholder": true
+      },
+      "intro": "As part of extension plan, NID has three campuses located in Ahmedabad, Gandhinagar and Bengaluru.",
+      "sections": [
+        {
+          "title": "About",
+          "type": "text",
+          "body": "The National Institute of Design (NID) is internationally acclaimed as one of the foremost multi-disciplinary institutions in the field of design education and research. The institute functions as an autonomous body under the department of Industrial Policy & Promotion, Ministry of Commerce & Industry, Government of India.\n\nNID has been declared 'Institution of National Importance' by the Act of Parliament, by virtue of the National Institute of Design Act 2014. NID is recognised by the Dept. of Scientific & Industrial Research (DSIR) under Ministry of Science & Technology, Government of India, as a scientific and industrial design research organisation.\n\nNID has been a pioneer in industrial design education after Bauhaus and Ulm in Germany and is known for its pursuit of design excellence to make Designed in India, Made for the World a reality.",
+          "image": {
+            "asset": "campus-ahmedabad-wide",
+            "placeholder": false
+          },
+          "links": [
+            {
+              "label": "info@nid.edu",
+              "targetType": "email",
+              "address": "info@nid.edu"
+            },
+            {
+              "label": "+91 79 2662 9500",
+              "targetType": "phone",
+              "address": "+91 79 2662 9500"
+            }
+          ]
+        },
+        {
+          "title": "The Three Campuses",
+          "type": "text",
+          "body": "NID Ahmedabad Campus is situated in Ahmedabad city, in Gujarat State and it offers 8 Bachelor Degree Programmes and 7 Master Degree Programmes (2.5 years). Recently Ph.D Programme has been introduced at NID Ahmedabad Campus.\n\nNID Gandhinagar Campus is situated in the city of Gandhinagar, in Gujarat State and it offers 7 masters programmes of 2.5 years.\n\nNID Bengaluru Campus is situated in the city of Bengaluru, in Karnataka State. Bengaluru Campus offers 5 masters programmes (2.5 years).",
+          "image": {
+            "asset": "campus-gandhinagar-wide",
+            "placeholder": false
+          }
+        },
+        {
+          "title": "Visiting NID",
+          "type": "text",
+          "body": "All NID campuses are open to visitors throughout the year from 9am to 6pm, Monday to Friday (apart from public holidays). Visitors will have to obtain a Visitor's Pass at the Main Gate to enter the campus.\n\nIf you are visiting us in a group with prior appointment, NID can arrange a Guided Tour of Campus.",
+          "image": {
+            "asset": "campus-bengaluru-wide",
+            "placeholder": false
+          }
+        },
+        {
+          "title": "More in About NID",
+          "type": "links",
+          "items": [
+            {
+              "label": "Director’s Message",
+              "page": "about-nid/directors-message"
+            },
+            {
+              "label": "Charter",
+              "page": "about-nid/charter"
+            },
+            {
+              "label": "History",
+              "page": "about-nid/history"
+            },
+            {
+              "label": "News & Events",
+              "page": "about-nid/news-and-events"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Ahmedabad",
+      "slug": "about-nid/campuses/ahmedabad",
+      "parent": "about-nid/campuses",
+      "keyInfo": [
+        {
+          "label": "Established",
+          "value": "1961"
+        },
+        {
+          "label": "Programmes",
+          "value": "8 B.Des · 7 M.Des · Ph.D"
+        }
+      ],
+      "hero": {
+        "asset": "campus-ahmedabad-hero",
+        "placeholder": false
+      },
+      "intro": "NID Ahmedabad Campus offers 8 Bachelor Degree Programmes and 7 Master Degree Programmes. Recently a Doctoral Programme in Design has been introduced.",
+      "sections": [
+        {
+          "title": "About the Campus",
+          "type": "text",
+          "body": "The National Institute of Design (NID) is internationally acclaimed as one of the foremost multi-disciplinary institutions in the field of design education and research.\n\nNID has been a pioneer in industrial design education after Bauhaus and Ulm in Germany, and is known for its pursuit of design excellence to make Designed in India, Made for the World a reality.\n\nThe Ahmedabad campus is the founding campus of the Institute, established in 1961 at Paldi.",
+          "image": {
+            "asset": "ahmedabad-about",
+            "placeholder": true
+          },
+          "links": [
+            {
+              "label": "info@nid.edu",
+              "targetType": "email",
+              "address": "info@nid.edu"
+            },
+            {
+              "label": "+91 79 2662 9500",
+              "targetType": "phone",
+              "address": "+91 79 2662 9500"
+            }
+          ]
+        },
+        {
+          "title": "Services & Centres",
+          "type": "links",
+          "items": [
+            {
+              "label": "Integrated Design Services"
+            },
+            {
+              "label": "Outreach Programmes"
+            },
+            {
+              "label": "Industry & Online Programmes"
+            },
+            {
+              "label": "Railway Design Centre"
+            },
+            {
+              "label": "Design Clinic for MSME"
+            }
+          ]
+        },
+        {
+          "title": "Workshops, Labs & Facilities",
+          "type": "text",
+          "body": "Not published on the campus page at present — unlike Gandhinagar, the Ahmedabad campus page carries no facilities inventory.\n\nContent to be supplied by NID.",
+          "image": {
+            "asset": "ahmedabad-facilities",
+            "placeholder": true
+          }
+        },
+        {
+          "title": "Disciplines",
+          "type": "cards",
+          "variant": "thumb",
+          "items": [
+            {
+              "name": "Bachelor of Design (B.Des)",
+              "meta": "8 disciplines",
+              "asset": "disc-bdes"
+            },
+            {
+              "name": "Master of Design (M.Des)",
+              "meta": "7 disciplines",
+              "asset": "disc-mdes"
+            },
+            {
+              "name": "Ph.D",
+              "meta": "Doctoral programme",
+              "asset": "disc-phd"
+            }
+          ]
+        },
+        {
+          "title": "Other campuses",
+          "type": "links",
+          "items": [
+            {
+              "label": "Gandhinagar",
+              "page": "about-nid/campuses/gandhinagar"
+            },
+            {
+              "label": "Bengaluru",
+              "page": "about-nid/campuses/bengaluru"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Gandhinagar",
+      "slug": "about-nid/campuses/gandhinagar",
+      "parent": "about-nid/campuses",
+      "keyInfo": [
+        {
+          "label": "Programmes",
+          "value": "7 M.Des disciplines"
+        },
+        {
+          "label": "Address",
+          "value": "GH-0, Extension Road, Nr. Infocity"
+        }
+      ],
+      "hero": {
+        "asset": "campus-gandhinagar-hero",
+        "placeholder": false
+      },
+      "intro": "Located in the capital city of Gandhinagar, Gujarat, NID Gandhinagar campus offers a full-time residential programme in M.Des across seven disciplines.",
+      "sections": [
+        {
+          "title": "About the Campus",
+          "type": "text",
+          "body": "Located in the capital city of Gandhinagar, Gujarat, NID- Gandhinagar campus offers full time residential program in M.Des (Master of Design) across seven disciplines, at the moment.\n\nThe campus also has an all-new auditorium/amphi-theatre for holding conferences and cultural events besides a Design Gallery that witnesses frequent exhibitions.\n\nThe campus is also the home to the ICNF (Innovation Centre for Natural Fibre), that is actively engaged in finding design applications for natural fibres.",
+          "image": {
+            "asset": "gandhinagar-about",
+            "placeholder": true
+          },
+          "links": [
+            {
+              "label": "pgcampus@nid.edu",
+              "targetType": "email",
+              "address": "pgcampus@nid.edu"
+            },
+            {
+              "label": "+91 79 2326 5500",
+              "targetType": "phone",
+              "address": "+91 79 2326 5500"
+            }
+          ]
+        },
+        {
+          "title": "Workshops, Labs & Facilities",
+          "type": "text",
+          "body": "The campus houses facilities and resources that provide students with a gamut of learning opportunities and help them enhance their creativity:\n\nKnowledge Management Centre · Central workshop (wood / metal) · Laser cutting · CNC machine · 3D printing · Digital lab · Discipline-specific labs and studios\n\nAuditorium and amphi-theatre · Design Gallery · Innovation Centre for Natural Fibre (ICNF)",
+          "image": {
+            "asset": "gandhinagar-facilities",
+            "placeholder": true
+          },
+          "links": [
+            {
+              "label": "Knowledge Management Centre"
+            },
+            {
+              "label": "Innovation Centre for Natural Fibre"
+            }
+          ]
+        },
+        {
+          "title": "Disciplines",
+          "type": "cards",
+          "variant": "thumb",
+          "items": [
+            {
+              "name": "Lifestyle Accessory Design",
+              "meta": "M.Des",
+              "asset": "disc-lifestyle-accessory"
+            },
+            {
+              "name": "Apparel Design",
+              "meta": "M.Des",
+              "asset": "disc-apparel"
+            },
+            {
+              "name": "New Media Design",
+              "meta": "M.Des",
+              "asset": "disc-new-media"
+            },
+            {
+              "name": "Toy and Game Design",
+              "meta": "M.Des",
+              "asset": "disc-toy-game"
+            },
+            {
+              "name": "Photography Design",
+              "meta": "M.Des",
+              "asset": "disc-photography"
+            },
+            {
+              "name": "Strategic Design Management",
+              "meta": "M.Des",
+              "asset": "disc-strategic-design"
+            },
+            {
+              "name": "Transportation & Automobile Design",
+              "meta": "M.Des",
+              "asset": "disc-transportation"
+            }
+          ]
+        },
+        {
+          "title": "Other campuses",
+          "type": "links",
+          "items": [
+            {
+              "label": "Ahmedabad",
+              "page": "about-nid/campuses/ahmedabad"
+            },
+            {
+              "label": "Bengaluru",
+              "page": "about-nid/campuses/bengaluru"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Bengaluru",
+      "slug": "about-nid/campuses/bengaluru",
+      "parent": "about-nid/campuses",
+      "keyInfo": [
+        {
+          "label": "Inaugurated",
+          "value": "March 2006 · 2-acre site"
+        },
+        {
+          "label": "Programmes",
+          "value": "5 M.Des disciplines"
+        }
+      ],
+      "hero": {
+        "asset": "campus-bengaluru-hero",
+        "placeholder": false
+      },
+      "intro": "NID Bengaluru campus is one of the three campuses of the National Institute of Design, Ahmedabad, located in Yeshvanthpur in north-western Bengaluru.",
+      "sections": [
+        {
+          "title": "About the Campus",
+          "type": "text",
+          "body": "NID Bengaluru campus is one of the three campuses of the National Institute of Design, Ahmedabad. It is located in Yeshvanthpur, a sub-locality of north western part of Bengaluru city in the state of Karnataka. It was set up as a joint initiative of and funding from the Department of Industrial Policy and Promotion (DIPP), Ministry of Commerce and Industry and the Ministry of Information Technology, Government of India. The campus was inaugurated in March 2006 and today stands as a compact set-up on a small 2-acre site.\n\nThe campus commenced with two PG programmes namely Design for Digital experience and Design for Retail experience from the academic year 2007-2008.\n\nBeing in Bengaluru, the IT city of India, the educational and research activities at the campus are in sync with the city ecosystem and focus on bringing digital inclusion in their products and processes across the various disciplines.",
+          "image": {
+            "asset": "bengaluru-about",
+            "placeholder": true
+          },
+          "links": [
+            {
+              "label": "bengaluru_campus@nid.edu",
+              "targetType": "email",
+              "address": "bengaluru_campus@nid.edu"
+            },
+            {
+              "label": "+91 80 2972 5006",
+              "targetType": "phone",
+              "address": "+91 80 2972 5006"
+            }
+          ]
+        },
+        {
+          "title": "Disciplines",
+          "type": "cards",
+          "variant": "thumb",
+          "items": [
+            {
+              "name": "Design for Retail Experience",
+              "meta": "M.Des",
+              "asset": "disc-retail"
+            },
+            {
+              "name": "Digital Game Design",
+              "meta": "M.Des",
+              "asset": "disc-digital-game"
+            },
+            {
+              "name": "Information Design",
+              "meta": "M.Des",
+              "asset": "disc-information"
+            },
+            {
+              "name": "Interaction Design",
+              "meta": "M.Des",
+              "asset": "disc-interaction"
+            },
+            {
+              "name": "Universal Design",
+              "meta": "M.Des",
+              "asset": "disc-universal"
+            }
+          ]
+        },
+        {
+          "title": "Research Labs",
+          "type": "text",
+          "body": "In the past faculty members of the campus have taken up several research projects under various labs:\n\ne-kalpa lab — Digital Online Learning environment for Design, funded by the Ministry of Human Resources.\n\nDigital Hampi Lab — Digital Reconstruction of Hampi monuments and Bazaars, funded by the Department of Science and Technology.\n\nThe campus has collaborated with various industry partners on research initiatives and is actively seeking to build industry-academia research collaborations.",
+          "image": {
+            "asset": "bengaluru-labs",
+            "placeholder": true
+          }
+        },
+        {
+          "title": "Other campuses",
+          "type": "links",
+          "items": [
+            {
+              "label": "Ahmedabad",
+              "page": "about-nid/campuses/ahmedabad"
+            },
+            {
+              "label": "Gandhinagar",
+              "page": "about-nid/campuses/gandhinagar"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "News & Events",
+      "slug": "about-nid/news-and-events",
+      "parent": "about-nid",
+      "hero": {
+        "asset": "news-hero",
+        "placeholder": true
+      },
+      "sections": [
+        {
+          "title": "2026",
+          "type": "mosaic",
+          "items": [
+            {
+              "overline": "latest",
+              "name": "North-East Artisans Honoured by Hon’ble President of India at Rashtrapati Bhavan",
+              "meta": "19 May 2026",
+              "asset": "news-north-east",
+              "featured": true,
+              "page": "about-nid/news-and-events/article-north-east-artisans"
+            },
+            {
+              "name": "The 45th Convocation, National Institute of Design, Ahmedabad",
+              "meta": "22 January 2026",
+              "asset": "news-convocation",
+              "page": "about-nid/news-and-events/article-template"
+            },
+            {
+              "name": "Drawing Dialogues happening at NID very soon. Register!",
+              "meta": "July 23 2026",
+              "asset": "news-drawing-dialogues"
+            }
+          ]
+        },
+        {
+          "title": "2025",
+          "type": "mosaic",
+          "items": [
+            {
+              "name": "Placeholder article",
+              "meta": "2025",
+              "asset": "news-placeholder-a",
+              "_todo": "Repeated placeholder card on the Figma board."
+            },
+            {
+              "name": "Placeholder article",
+              "meta": "2025",
+              "asset": "news-placeholder-b",
+              "_todo": "Repeated placeholder card on the Figma board."
+            },
+            {
+              "name": "Placeholder article",
+              "meta": "2025",
+              "asset": "news-placeholder-c",
+              "_todo": "Repeated placeholder card on the Figma board."
+            }
+          ]
+        },
+        {
+          "title": "Archive",
+          "type": "links",
+          "items": [
+            {
+              "label": "2024"
+            },
+            {
+              "label": "2023"
+            }
+          ],
+          "links": [
+            {
+              "label": "Older"
+            }
+          ]
+        },
+        {
+          "title": "More in About NID",
+          "type": "links",
+          "items": [
+            {
+              "label": "Director’s Message",
+              "page": "about-nid/directors-message"
+            },
+            {
+              "label": "Charter",
+              "page": "about-nid/charter"
+            },
+            {
+              "label": "History",
+              "page": "about-nid/history"
+            },
+            {
+              "label": "Campuses",
+              "page": "about-nid/campuses"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "North-East Artisans Honoured by Hon’ble President of India at Rashtrapati Bhavan",
+      "slug": "about-nid/news-and-events/article-north-east-artisans",
+      "parent": "about-nid/news-and-events",
+      "keyInfo": [
+        {
+          "label": "Date",
+          "value": "19 May 2026"
+        },
+        {
+          "label": "Venue",
+          "value": "Rashtrapati Bhavan, New Delhi"
+        }
+      ],
+      "hero": {
+        "asset": "news-north-east",
+        "placeholder": false
+      },
+      "intro": "An 80-member delegation of artisans and weavers from all eight North Eastern states called on the President of India, Smt Droupadi Murmu, at Rashtrapati Bhavan. The group had crafted the invitation kit for the ‘At Home’ Reception held on 26 January 2026 — work carried out with technical support from the National Institute of Design.",
+      "sections": [
+        {
+          "title": "The Delegation",
+          "type": "text",
+          "body": "The delegation numbered eighty, drawn from all eight North Eastern states and made up predominantly of women from remote districts. Their work was presented to the President at Rashtrapati Bhavan, after which the group was taken on a guided tour of the estate, including the Amrit Udyan gardens.\n\nAddressing the artisans, the President described them as the shining example of the living heritage of the nation, and spoke of the need to support them so that their artistic knowledge reaches as many people as possible and they can become self-reliant. She urged the artisans to carry their traditions to younger generations.",
+          "image": {
+            "asset": "ne-delegation",
+            "placeholder": true
+          },
+          "links": [
+            {
+              "label": "Rashtrapati Bhavan",
+              "targetType": "external",
+              "url": "https://rashtrapatibhavan.gov.in"
+            },
+            {
+              "label": "cmr@nid.edu",
+              "targetType": "email",
+              "address": "cmr@nid.edu"
+            },
+            {
+              "label": "International Centre for Indian Crafts"
+            }
+          ]
+        },
+        {
+          "title": "Woven Threads × Noklak",
+          "type": "text",
+          "body": "Artisans from Noklak district in Nagaland worked with Ehlon niu — stinging nettle and wild rhea fibres — retted, spun and woven by hand. Team Woven Threads × Noklak presented handcrafted home textiles from their newest collection, comprising three pillow covers.\n\nWoven Threads is a design label engaged in artisanal textile design and manufacturing in collaboration with local communities, and led the Noklak contingent within the wider delegation.",
+          "image": {
+            "asset": "ne-woven-threads",
+            "placeholder": true
+          }
+        },
+        {
+          "title": "The Invitation Kit",
+          "type": "text",
+          "body": "The kit was produced for the ‘At Home’ Reception held at Rashtrapati Bhavan on 26 January 2026. It carried the artistic and cultural heritage of the North Eastern region into a piece of official state correspondence — placing craft from eight states directly into the hands of every guest, rather than displaying it at a remove."
+        },
+        {
+          "title": "The Institute’s Role",
+          "type": "text",
+          "body": "NID provided technical support to the initiative, undertaken under the aegis of Rashtrapati Bhavan. The engagement continues the Institute’s long association with craft communities, in which design input is directed at the making, finishing and presentation of work that is already the product of generations of skill.",
+          "image": {
+            "asset": "ne-institute-role",
+            "placeholder": true
+          },
+          "links": [
+            {
+              "label": "Center for Bamboo Initiatives"
+            },
+            {
+              "label": "Smart Handloom Innovation Centre"
+            }
+          ]
+        },
+        {
+          "title": "More news",
+          "type": "links",
+          "items": [
+            {
+              "label": "The 45th Convocation",
+              "page": "about-nid/news-and-events/article-template"
+            },
+            {
+              "label": "All News & Events",
+              "page": "about-nid/news-and-events"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "The 45th Convocation, National Institute of Design, Ahmedabad",
+      "slug": "about-nid/news-and-events/article-template",
+      "parent": "about-nid/news-and-events",
+      "keyInfo": [
+        {
+          "label": "Date",
+          "value": "22 January 2026"
+        },
+        {
+          "label": "Venue",
+          "value": "NID Gandhinagar Campus"
+        }
+      ],
+      "hero": {
+        "asset": "news-convocation",
+        "placeholder": true
+      },
+      "intro": "The 45th Convocation of the National Institute of Design, Ahmedabad marks a significant academic and institutional milestone. Dr V. Narayanan, Chairman of the Indian Space Research Organisation, will serve as Chief Guest and deliver the Convocation Address.",
+      "sections": [
+        {
+          "title": "The Ceremony",
+          "type": "text",
+          "body": "Beyond the ceremony, the campus will host Graduate Show 2026, Young Designer, Design Panorama, Annual Design Show 2026, Design Street, and the Craft Bazaar. These events showcase student work, interdisciplinary inquiry, and collaborations including Integrated Design Services, the National Design Business Incubator, and Research & Development activities.\n\nThe convocation ceremony will stream at 5:00 PM on NID's YouTube channel.",
+          "image": {
+            "asset": "convocation-ceremony",
+            "placeholder": true
+          },
+          "links": [
+            {
+              "label": "Watch the live stream",
+              "targetType": "external",
+              "url": "https://www.youtube.com/@nidindia"
+            },
+            {
+              "label": "cmr@nid.edu",
+              "targetType": "email",
+              "address": "cmr@nid.edu"
+            }
+          ]
+        },
+        {
+          "title": "Graduate Show 2026",
+          "type": "text",
+          "body": "The Graduate Show theme encompasses six interconnected areas:\n\nPeople & Society — emphasising human needs and community.\n\nCulture & Craft — honouring India's traditions.\n\nLiving & Lifestyle — reimagining everyday practices.\n\nTechnology & Interaction — highlighting digital tools and accessibility.\n\nSystems, Infrastructure & Futures — addressing large-scale challenges.\n\nNature & Sustainability — foregrounding ecological responsibility.",
+          "image": {
+            "asset": "convocation-graduate-show",
+            "placeholder": true
+          }
+        },
+        {
+          "title": "Design Panorama",
+          "type": "text",
+          "body": "The Design Panorama presents an immersive digital journey through NID's history across its three campuses — Ahmedabad, Gandhinagar and Bengaluru — through curated presentations and student projects."
+        },
+        {
+          "title": "Craft Bazaar",
+          "type": "text",
+          "body": "The Craft Bazaar runs 21–23 January, 10:00 AM to 10:00 PM near the Academic Block, featuring artisan stalls and student-led shops.",
+          "image": {
+            "asset": "convocation-craft-bazaar",
+            "placeholder": true
+          },
+          "links": [
+            {
+              "label": "Young Designers 2026"
+            },
+            {
+              "label": "Annual Design Show"
+            }
+          ]
+        },
+        {
+          "title": "More news",
+          "type": "links",
+          "items": [
+            {
+              "label": "North-East Artisans Honoured",
+              "page": "about-nid/news-and-events/article-north-east-artisans"
+            },
+            {
+              "label": "All News & Events",
+              "page": "about-nid/news-and-events"
+            }
+          ]
+        }
+      ]
+    }
   ],
   "footer": {
-    "primary": ["Careers","Integrated Design Services","Placements","Young Designers","NID Alumni Data Registration","Tenders","PM Vidyalaxmi Scheme"],
-    "secondary": ["Right to Information","Privacy Policy","Terms & Conditions","Sitemap"],
+    "primary": [
+      "Careers",
+      "Integrated Design Services",
+      "Placements",
+      "Young Designers",
+      "NID Alumni Data Registration",
+      "Tenders",
+      "PM Vidyalaxmi Scheme"
+    ],
+    "secondary": [
+      "Right to Information",
+      "Privacy Policy",
+      "Terms & Conditions",
+      "Sitemap"
+    ],
     "contact": {
       "heading": "Contact",
-      "emails": ["info@nid.edu","cmr@nid.edu"],
-      "phones": ["+91 79 2662 9500","+91 79 2662 9600"]
+      "emails": [
+        "info@nid.edu",
+        "cmr@nid.edu"
+      ],
+      "phones": [
+        "+91 79 2662 9500",
+        "+91 79 2662 9600"
+      ]
     },
     "collaborations": {
       "heading": "Collaborations",
-      "logos": ["Skill India","India.gov.in","Make in India","Startup India","Ministry of Education","Khelo India"]
+      "logos": [
+        "Skill India",
+        "India.gov.in",
+        "Make in India",
+        "Startup India",
+        "Ministry of Education",
+        "Khelo India"
+      ]
     }
   }
 }

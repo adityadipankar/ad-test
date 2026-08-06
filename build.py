@@ -175,6 +175,9 @@ def sec_links(s):
             aside(s)]
 
 
+GO = f'<span class="gobtn" aria-hidden="true"><svg viewBox="0 0 24 24">{ICONS["arrow-up-right"]}</svg></span>'
+
+
 def sec_cards(s):
     variant = s.get("variant", "")
     cards = []
@@ -183,13 +186,27 @@ def sec_cards(s):
         dest = href(resolve({"label": it.get("name", ""), "page": it.get("page")})) if it.get("page") else None
         o = f'<a class="{cls}" href="{e(dest)}">' if dest else f'<div class="{cls}">'
         c = "</a>" if dest else "</div>"
-        style = "t-heading-6" if variant == "person" else "t-heading-3"
-        parts = [media(it, "card__media", it.get("asset")),
-                 f'<h3 class="card__title {style}">{e(it.get("name", ""))}</h3>']
-        if it.get("meta"):
-            parts.append(f'<p class="card__meta t-label-small">{e(it["meta"])}</p>')
-        if it.get("note"):
-            parts.append(f'<p class="card__note t-label-micro">{e(it["note"])}</p>')
+        name = e(it.get("name", ""))
+
+        if variant == "person":
+            # Round portrait with the arrow beside it, then name and note
+            parts = [f'<div class="card__head">{media(it, "card__media", it.get("asset"))}{GO}</div>',
+                     '<div class="card__body">',
+                     f'<h3 class="card__title t-heading-6">{name}</h3>']
+            if it.get("note"):
+                parts.append(f'<p class="card__note t-label-micro">{e(it["note"])}</p>')
+            parts.append("</div>")
+        elif variant == "campus":
+            # The arch: place name sits on the image
+            parts = [media(it, "card__media", it.get("asset")),
+                     f'<h3 class="card__title t-heading-3">{name}</h3>']
+        else:
+            parts = [media(it, "card__media", it.get("asset")),
+                     f'<h3 class="card__title t-heading-3">{name}</h3>']
+            if it.get("meta"):
+                parts.append(f'<p class="card__meta t-label-small">{e(it["meta"])}</p>')
+            if it.get("note"):
+                parts.append(f'<p class="card__note t-label-micro">{e(it["note"])}</p>')
         cards.append(o + "".join(parts) + c)
     return [head(s), '<div class="content cards">' + "".join(cards) + "</div>", aside(s)]
 
@@ -203,11 +220,21 @@ def sec_mosaic(s):
         o = f'<a class="{cls}" href="{e(dest)}">' if dest else f'<div class="{cls}">'
         c = "</a>" if dest else "</div>"
         parts = [media(it, "card__media", it.get("asset"))]
-        if it.get("overline"):
-            parts.append(f'<p class="card__meta t-label-overline">{e(it["overline"])}</p>')
-        parts.append(f'<h3 class="card__title {"t-heading-4" if wide else "t-heading-5"}">{e(it.get("name", ""))}</h3>')
-        if it.get("meta"):
-            parts.append(f'<p class="card__meta t-label-small">{e(it["meta"])}</p>')
+        if wide:
+            # Overline with a rule running off to the right, headline, then the
+            # arrow with its own rule closing the card — as the component does it.
+            over = e(it.get("overline", "")) or "&nbsp;"
+            parts.append(f'<p class="card__rule card__meta card__meta--overline t-label-overline">{over}</p>')
+            parts.append(f'<h3 class="card__title t-heading-4">{e(it.get("name", ""))}</h3>')
+            if it.get("meta"):
+                parts.append(f'<p class="card__meta t-label-small">{e(it["meta"])}</p>')
+            parts.append(f'<p class="card__rule card__go">{GO}</p>')
+        else:
+            if it.get("overline"):
+                parts.append(f'<p class="card__meta t-label-overline">{e(it["overline"])}</p>')
+            parts.append(f'<h3 class="card__title t-heading-5">{e(it.get("name", ""))}</h3>')
+            if it.get("meta"):
+                parts.append(f'<p class="card__meta t-label-small">{e(it["meta"])}</p>')
         cards.append(o + "".join(parts) + c)
     return [head(s), '<div class="content cards">' + "".join(cards) + "</div>", aside(s)]
 
@@ -229,8 +256,64 @@ def sec_rail(s):
     return out
 
 
+
+def sec_tiles(s):
+    """The home mosaic: one square tile per module, laid straight onto the page grid."""
+    out = []
+    for it in s.get("items", []):
+        kind = it.get("kind", "blank")
+        span = it.get("span", 1)
+        dest = href(resolve({"label": it.get("heading", ""), "page": it.get("page")})) if it.get("page") else None
+        cls = f"tile tile--{kind}" + (" tile--wide" if span > 1 else "")
+        o = f'<a class="{cls}" href="{e(dest)}">' if dest else f'<div class="{cls}">'
+        c = "</a>" if dest else "</div>"
+        body = []
+
+        if it.get("asset") and kind in ("feature", "quote", "item", "list"):
+            body.append(media(it, "tile__bg", it["asset"]))
+
+        inner = ['<div class="tile__inner">']
+        if it.get("overline"):
+            inner.append(f'<p class="tile__over t-label-overline">{e(it["overline"])}</p>')
+
+        if kind == "statement":
+            inner.append(f'<p class="tile__statement t-heading-2">{e(it["text"])}</p>')
+        elif kind == "quote":
+            inner.append(f'<blockquote class="tile__quote t-display-quote">{e(it["text"])}</blockquote>')
+        elif kind == "pairs":
+            if it.get("heading"):
+                inner.append(f'<h2 class="tile__head t-heading-3">{e(it["heading"])}</h2>')
+            rows = "".join(
+                f'<div class="tile__pair"><dt class="t-label-button">{e(a)}</dt>'
+                f'<dd class="t-label-small">{e(b)}</dd></div>' for a, b in it.get("pairs", []))
+            inner.append(f'<dl class="tile__pairs">{rows}</dl>')
+        elif kind == "list":
+            if it.get("heading"):
+                inner.append(f'<h2 class="tile__head t-heading-3">{e(it["heading"])}</h2>')
+            style = "t-label-micro" if it.get("micro") else "t-label-small"
+            rows = "".join(f'<li class="{style}">{e(x)}</li>' for x in it.get("items", []))
+            inner.append(f'<ul class="tile__list">{rows}</ul>')
+        elif kind == "feature":
+            hs = "t-display-serif" if it.get("serif") else "t-heading-3"
+            inner.append(f'<h2 class="tile__head {hs}">{e(it.get("heading", ""))}</h2>')
+            if it.get("text"):
+                inner.append(f'<p class="tile__text t-label-small">{e(it["text"])}</p>')
+        elif kind == "item":
+            inner.append(f'<h3 class="tile__head t-heading-5">{e(it.get("heading", ""))}</h3>')
+            if it.get("text"):
+                inner.append(f'<p class="tile__text t-label-small">{e(it["text"])}</p>')
+
+        if it.get("action"):
+            inner.append(f'<p class="tile__action t-label-button">{e(it["action"])}{icon("arrow-up-right", "tile__icon")}</p>')
+        inner.append("</div>")
+
+        out.append(o + "".join(body) + "".join(inner) + c)
+    return out
+
+
 RENDERERS = {"text": sec_text, "links": sec_links, "cards": sec_cards,
-             "files": sec_files, "rail": sec_rail, "mosaic": sec_mosaic}
+             "files": sec_files, "rail": sec_rail, "mosaic": sec_mosaic,
+             "tiles": sec_tiles}
 
 
 # ---------------------------------------------------------------------- shell
@@ -239,9 +322,11 @@ def masthead():
     return f"""<header class="masthead">
   <div class="masthead__inner">
     <a class="masthead__brand" href="{url('')}" aria-label="National Institute of Design — home">{LOGO}</a>
-    <div class="masthead__tools">
+    <div class="masthead__theme">
       <button class="iconbtn" id="theme-cycle" title="Change theme" aria-label="Change theme"><svg viewBox="0 0 24 24">{ICONS['palette']}</svg></button>
       <button class="iconbtn" id="appearance-toggle" title="Light or dark" aria-label="Toggle light or dark"><svg viewBox="0 0 24 24">{ICONS['sun']}</svg></button>
+    </div>
+    <div class="masthead__tools">
       <a class="masthead__apply t-label-small" href="#">Apply</a>
       <button class="iconbtn" title="Search" aria-label="Search"><svg viewBox="0 0 24 24">{ICONS['search']}</svg></button>
       <button class="iconbtn" title="Menu" aria-label="Menu"><svg viewBox="0 0 24 24">{ICONS['menu']}</svg></button>
@@ -295,7 +380,12 @@ def render_page(page, foot, titles):
     depth = len([p for p in page["slug"].split("/") if p])
     PREFIX = "../" * depth if depth else "./"
 
-    blocks = [f'<div class="rail"><h1 class="pagetitle t-heading-1">{e(page["title"])}</h1></div>']
+    home = page.get("template") == "home"
+    blocks = []
+    if not home:
+        blocks.append(f'<div class="rail"><h1 class="pagetitle t-heading-1">{e(page["title"])}</h1></div>')
+    else:
+        blocks.append(f'<h1 class="visually-hidden">{e(page["title"])}</h1>')
 
     # Utility slot: back-navigation on any page with a parent, labelled with the
     # parent's title — derived, never authored.
@@ -322,7 +412,8 @@ def render_page(page, foot, titles):
         blocks.append(f'<div class="measure"><p class="intro t-body-large-regular">{e(page["intro"])}</p></div>')
 
     for s in page.get("sections", []):
-        blocks.append('<hr class="hr">')
+        if not home:
+            blocks.append('<hr class="hr">')
         r = RENDERERS.get(s["type"])
         if not r:
             raise SystemExit(f'Unknown section type: {s["type"]}')
@@ -384,6 +475,8 @@ def main():
     (DIST / "styles").mkdir(parents=True, exist_ok=True)
     for css in ("tokens.css", "base.css"):
         shutil.copy(SRC / "styles" / css, DIST / "styles" / css)
+    # base.css references ../pattern-tile.svg relative to itself
+    shutil.copy(SRC / "assets" / "pattern-tile.svg", DIST / "pattern-tile.svg")
     pub = ROOT / "public"
     if pub.exists():
         shutil.copytree(pub, DIST, dirs_exist_ok=True)

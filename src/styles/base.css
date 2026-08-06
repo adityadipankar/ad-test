@@ -104,18 +104,17 @@ a { color: inherit; }
 .iconbtn:hover { color: var(--c-icon-primary); background: var(--c-surface-raised); }
 .iconbtn svg { width: 18px; height: 18px; }
 
-/* The block-print band that opens and closes every page. Standing in for the
-   artwork until the real SVG is exported from the file. */
+/* The block-print band that opens and closes every page. One 48px tile from
+   the Figma Brand Strip component, repeated — the artwork keeps its own colours
+   rather than following the theme, because it is brand, not UI. */
 .patternstrip {
-  height: 32px;
-  background:
-    repeating-linear-gradient(90deg,
-      var(--c-accent-tertiary) 0 10px, transparent 10px 22px),
-    repeating-linear-gradient(90deg,
-      var(--c-accent-secondary) 0 4px, transparent 4px 34px);
-  background-position: 0 0, 8px 0;
-  opacity: .55;
+  height: 48px;
+  background-image: url("../pattern-tile.svg");
+  background-repeat: repeat-x;
+  background-size: 48px 48px;
+  background-position: center;
 }
+@media (max-width: 767px) { .patternstrip { height: 32px; background-size: 32px 32px; } }
 
 .pagefoot {
   margin-top: var(--space-48);
@@ -191,8 +190,24 @@ a { color: inherit; }
 .card--wide .media { --ratio: 684 / 240; }
 @media (max-width: 767px) { .card--wide .media { --ratio: 16 / 9; } }
 
-.card--campus .media { --ratio: 1 / 1; }
-.card--person .media { --ratio: 1 / 1; border-radius: 50%; width: 132px; }
+/* Campus card: the arch. Top corners round to a half-circle, bottom stays
+   square, and the place name sits on the image. */
+.card--campus { position: relative; gap: 0; }
+.card--campus .media {
+  --ratio: 1 / 1;
+  border-radius: 176px 176px 0 0;
+}
+.card--campus .card__title {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: var(--space-24);
+  color: var(--neutral-white);
+  text-shadow: 0 1px 12px rgba(0,0,0,.45);
+}
+.card--person { padding: var(--space-12); gap: var(--space-16); }
+.card--person .card__head { display: flex; align-items: flex-start; gap: var(--space-8); }
+.card--person .media { --ratio: 1 / 1; border-radius: 50%; width: 144px; flex: none; }
+.card--person .card__body { display: grid; gap: var(--space-2); }
+.card--person .card__title { margin: 0; }
 
 /* Call to action — the file's link component. Icon is derived, never authored. */
 .cta {
@@ -281,3 +296,135 @@ a { color: inherit; }
 
 .card--thumb .media { --ratio: 4 / 3; }
 .card--thumb .card__title { margin-top: var(--space-4); }
+
+/* ------------------------------------------- news article, per the component */
+
+/* Featured: image and text side by side across two columns, with a rule beside
+   the overline and another beside the arrow that closes the card. */
+.card--wide {
+  grid-column: 1 / -1;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--grid-column-gap);
+  align-items: start;
+}
+.card--wide .media { --ratio: 1 / 1; grid-row: 1 / span 4; }
+.card--wide .card__rule { display: flex; align-items: center; gap: var(--space-8); }
+.card--wide .card__rule::after {
+  content: ""; flex: 1 1 auto; height: 1px; background: var(--c-border-default);
+}
+.card--wide .card__meta--overline { color: var(--c-text-quaternary); }
+.card--wide .card__title { color: var(--c-text-secondary); }
+.card--wide .card__go { margin-top: auto; }
+
+@media (max-width: 767px) {
+  .card--wide { grid-template-columns: 1fr; }
+  .card--wide .media { grid-row: auto; --ratio: 16 / 9; }
+}
+
+/* The round arrow button that closes a news or person card */
+.gobtn {
+  width: 32px; height: 32px; flex: none; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid var(--c-border-subtle);
+  color: var(--c-icon-quaternary);
+}
+.gobtn svg { width: 16px; height: 16px; }
+
+/* Separator: the component is 24px tall with the rule centred in it */
+.hr {
+  grid-column: 1 / -1;
+  height: 24px; border: 0; margin: 0; padding: 0;
+  background: none;
+  display: flex; align-items: center;
+}
+.hr::after { content: ""; display: block; width: 100%; height: 1px; background: var(--c-border-subtle); }
+@media (max-width: 767px) { .hr { display: none; } }
+
+/* Intro sits in the primary text colour, not a muted grey */
+.intro { color: var(--c-text-primary); }
+
+/* Masthead: the theme controls sit centred, the utilities right */
+.masthead__inner { display: grid; grid-template-columns: 1fr auto 1fr; }
+.masthead__theme { display: flex; align-items: center; gap: var(--space-8); justify-self: center; }
+.masthead__tools { margin-left: 0; justify-self: end; }
+@media (max-width: 767px) {
+  .masthead__inner { grid-template-columns: auto 1fr auto; }
+  .masthead__theme { justify-self: end; }
+}
+
+/* When a section has links in the last column, its content stops one column
+   short so the link sits in the same row — the arrangement the boards use for
+   News & Events and Student Awards. Without this the content spans the full
+   width and the link is pushed onto a row of its own. */
+.section--aside .content,
+.section--aside .measure { grid-column: 2 / -2; }
+
+@media (max-width: 1279px) {
+  .section--aside .content,
+  .section--aside .measure { grid-column: 2 / -1; }
+}
+@media (max-width: 1023px) {
+  .section--aside .content,
+  .section--aside .measure { grid-column: 1 / -1; }
+}
+
+/* ------------------------------------------------------------ the home mosaic */
+
+/* Tiles sit directly on the page grid, one column each, square — the 330px
+   module the home board is built from. */
+.tile {
+  grid-column: span 1;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  text-decoration: none;
+  background: var(--c-surface-raised);
+}
+.tile--wide { grid-column: span 2; aspect-ratio: auto; }
+@media (max-width: 767px) { .tile--wide { grid-column: span 1; aspect-ratio: 1 / 1; } }
+
+.tile__bg { position: absolute; inset: 0; aspect-ratio: auto; height: 100%; }
+.tile__bg img { width: 100%; height: 100%; object-fit: cover; }
+
+.tile__inner {
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--space-8);
+  padding: var(--space-24);
+  width: 100%;
+}
+.tile__over { margin: 0; color: var(--c-text-quaternary); }
+.tile__head, .tile__statement, .tile__quote { margin: 0; }
+.tile__quote { color: var(--c-text-secondary); }
+.tile__text { margin: 0; color: var(--c-text-secondary); }
+.tile__action {
+  margin: auto 0 0; display: flex; align-items: center; gap: var(--space-8);
+  color: var(--c-accent-primary);
+}
+.tile__icon { width: 16px; height: 16px; }
+.tile__icon svg { width: 100%; height: 100%; }
+
+.tile__pairs { margin: 0; display: grid; gap: var(--space-8); }
+.tile__pair dt { color: var(--c-text-primary); }
+.tile__pair dd { margin: 0; color: var(--c-text-tertiary); }
+
+.tile__list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-8); }
+.tile__list li { color: var(--c-text-secondary); }
+
+/* A tile with artwork behind it needs its text to stay legible */
+.tile--feature .tile__inner,
+.tile--quote .tile__inner {
+  background: linear-gradient(to top, var(--c-surface-page) 42%, transparent);
+  justify-content: flex-end;
+}
+
+/* Empty tiles are part of the composition — they set the rhythm */
+.tile--blank { background: var(--c-accent-subtle); }
+.tile--statement { background: var(--c-surface-inverse); }
+.tile--statement .tile__statement { color: var(--c-text-on-accent); }
+.tile--statement .tile__inner { justify-content: flex-end; }
+
+/* A tile is a fixed square; long lists fade out rather than spilling past it */
+.tile__inner { overflow: hidden; }
+.tile__list { overflow: hidden; mask-image: linear-gradient(to bottom, #000 78%, transparent); }
+.tile--list .tile__inner { padding-bottom: var(--space-12); }
