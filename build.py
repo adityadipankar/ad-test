@@ -23,10 +23,20 @@ ROOT = pathlib.Path(__file__).resolve().parent
 SRC = ROOT / "src"
 DIST = ROOT / "dist"
 
+# Page titles carry curly quotes and em-dashes. A CI runner with a C/POSIX
+# locale gives Python an ASCII stdout, which would make the progress log itself
+# crash the build. Every file read and write below is explicitly UTF-8 for the
+# same reason — never rely on the platform default encoding.
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, ValueError):
+        pass
+
 BASE = ""
 PREFIX = ""
 
-LOGO = (SRC / "assets" / "logo.svg").read_text().strip()
+LOGO = (SRC / "assets" / "logo.svg").read_text(encoding="utf-8").strip()
 
 # Interim webfonts. Futura PT and Bodoni PT VF are licensed and are not served
 # here; Jost and Bodoni Moda stand in for them and are listed *after* the real
@@ -355,7 +365,7 @@ def main():
         if arg.startswith("--base="):
             BASE = arg.split("=", 1)[1].rstrip("/")
 
-    data = json.loads((SRC / "content" / "pages.json").read_text())
+    data = json.loads((SRC / "content" / "pages.json").read_text(encoding="utf-8"))
     pages, foot = data["pages"], data["footer"]
 
     titles = {p["slug"]: p["title"] for p in pages}
@@ -377,19 +387,20 @@ def main():
     pub = ROOT / "public"
     if pub.exists():
         shutil.copytree(pub, DIST, dirs_exist_ok=True)
-    (DIST / ".nojekyll").write_text("")
+    (DIST / ".nojekyll").write_text("", encoding="utf-8")
 
     for p in pages:
         out = DIST / p["slug"] / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(render_page(p, foot, titles))
+        out.write_text(render_page(p, foot, titles), encoding="utf-8")
         print(f"  {p['slug'] or '(root)':52s} {p['title'][:40]}")
 
     home = f"{BASE}/about-nid/" if BASE else "./about-nid/"
     (DIST / "index.html").write_text(
         f'<!doctype html><meta charset="utf-8">'
         f'<meta http-equiv="refresh" content="0; url={home}">'
-        f'<title>NID</title><a href="{home}">About NID</a>')
+        f'<title>NID</title><a href="{home}">About NID</a>',
+        encoding="utf-8")
 
     print(f"built {len(pages)} pages into {DIST}" + (f' with base "{BASE}"' if BASE else ""))
 

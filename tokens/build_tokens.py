@@ -13,7 +13,7 @@ import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-DATA = json.loads((ROOT / "tokens" / "figma-tokens.json").read_text())
+DATA = json.loads((ROOT / "tokens" / "figma-tokens.json").read_text(encoding="utf-8"))
 
 
 def slug(s):
@@ -136,7 +136,7 @@ def main():
 
     dest = ROOT / "src" / "styles" / "tokens.css"
     dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text("\n".join(lines) + "\n")
+    dest.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     themes = len(DATA["theme"]["modes"])
     print(f"tokens.css written: {len(DATA['theme']['v'])} primitives x {themes} themes, "
