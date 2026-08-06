@@ -427,7 +427,7 @@ def render_page(page, foot, titles):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{e(page['title'])} — National Institute of Design</title>
+<title>{e(page['title'])}{"" if page.get("template") == "home" else " — National Institute of Design"}</title>
 <meta name="description" content="{e(desc)}">
 {FONT_LINKS}
 <link rel="stylesheet" href="{url('styles/tokens.css')}">
@@ -488,12 +488,18 @@ def main():
         out.write_text(render_page(p, foot, titles), encoding="utf-8")
         print(f"  {p['slug'] or '(root)':52s} {p['title'][:40]}")
 
-    home = f"{BASE}/about-nid/" if BASE else "./about-nid/"
-    (DIST / "index.html").write_text(
-        f'<!doctype html><meta charset="utf-8">'
-        f'<meta http-equiv="refresh" content="0; url={home}">'
-        f'<title>NID</title><a href="{home}">About NID</a>',
-        encoding="utf-8")
+    # The page with an empty slug IS the site root. Only fall back to a redirect
+    # if no such page exists — otherwise this would overwrite the home page that
+    # the loop above just wrote.
+    if not any(p["slug"] == "" for p in pages):
+        first = pages[0]["slug"]
+        target = f"{BASE}/{first}/" if BASE else f"./{first}/"
+        (DIST / "index.html").write_text(
+            f'<!doctype html><meta charset="utf-8">'
+            f'<meta http-equiv="refresh" content="0; url={target}">'
+            f'<title>NID</title><a href="{target}">{e(pages[0]["title"])}</a>',
+            encoding="utf-8")
+        print(f"  (root)  -> redirect to /{first}/")
 
     print(f"built {len(pages)} pages into {DIST}" + (f' with base "{BASE}"' if BASE else ""))
 
