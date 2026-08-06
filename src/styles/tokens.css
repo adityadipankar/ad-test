@@ -699,7 +699,7 @@
   --space-48: 48px;
   --space-56: 56px;
   --space-64: 64px;
-  --font-primary: "Futura PT", "Futura", "Century Gothic", sans-serif;
+  --font-primary: "Futura PT", "Jost", "Century Gothic", sans-serif;
   --font-secondary: "Bodoni PT VF", "Bodoni Moda", Didot, Georgia, serif;
   --font-body: "Merriweather Sans", "Source Sans 3", system-ui, sans-serif;
 }

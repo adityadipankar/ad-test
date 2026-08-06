@@ -11,7 +11,7 @@ import sys
 from playwright.sync_api import sync_playwright
 
 ROOT = pathlib.Path(__file__).resolve().parent
-URL = (ROOT / "dist" / "about" / "index.html").as_uri()
+URL = (ROOT / "dist" / "about-nid" / "index.html").as_uri()
 OUT = ROOT / "shots"
 OUT.mkdir(exist_ok=True)
 

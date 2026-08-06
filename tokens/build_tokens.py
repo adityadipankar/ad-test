@@ -85,7 +85,7 @@ def statics():
     for k, v in DATA["spacing"].items():
         out.append(f"  --space-{k}: {num(v)}px;")
     f = DATA["fonts"]
-    out.append(f'  --font-primary: "{f["primary"]}", "Futura", "Century Gothic", sans-serif;')
+    out.append(f'  --font-primary: "{f["primary"]}", "Jost", "Century Gothic", sans-serif;')
     out.append(f'  --font-secondary: "{f["secondary"]}", "Bodoni Moda", Didot, Georgia, serif;')
     out.append(f'  --font-body: "{f["body"]}", "Source Sans 3", system-ui, sans-serif;')
     out.append("}")

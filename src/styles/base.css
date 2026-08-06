@@ -246,3 +246,38 @@ a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* ---------------------------------------------------- logo, utility, key info */
+
+.masthead__brand { color: var(--c-text-primary); }
+.masthead__brand svg { height: 30px; width: auto; display: block; }
+@media (max-width: 767px) { .masthead__brand svg { height: 22px; } }
+.masthead__apply { text-decoration: none; color: var(--c-accent-primary); }
+
+/* Back-navigation sits in the utility slot on row 1 */
+.utility { grid-row: 1; }
+@media (max-width: 1023px) { .utility { grid-row: auto; order: -1; } }
+
+.keyinfo { margin: 0; display: grid; gap: var(--space-16); align-content: start; }
+.keyinfo__row { display: grid; gap: var(--space-2); }
+.keyinfo dt { color: var(--c-text-quaternary); }
+.keyinfo dd { margin: 0; }
+
+/* A link with no destination yet — visibly incomplete rather than a dead href */
+.cta--todo { color: var(--c-text-quaternary); cursor: default; }
+.cta--todo .cta__icon { opacity: .4; }
+
+/* Link lists inside a section run two-up in the content area */
+.linklist--wrap {
+  display: grid;
+  grid-template-columns: repeat(var(--link-cols, 2), minmax(0, 1fr));
+  column-gap: var(--grid-column-gap);
+  row-gap: var(--space-16);
+}
+@media (max-width: 767px) { .linklist--wrap { --link-cols: 1; } }
+
+.media--section { --ratio: 684 / 330; margin-top: var(--space-8); }
+@media (max-width: 767px) { .media--section { --ratio: 16 / 9; } }
+
+.card--thumb .media { --ratio: 4 / 3; }
+.card--thumb .card__title { margin-top: var(--space-4); }

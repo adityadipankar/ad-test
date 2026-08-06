@@ -1,10 +1,9 @@
 # NID website — build from the Figma design system
 
-A working proof that the NID artboards can become a real, responsive, themeable
-website driven by the same tokens the Figma file uses. One page is built —
-**About NID** — at all four breakpoints, because that is the only page drawn at
-all four widths in Figma and so the only one whose responsive behaviour can be
-checked rather than assumed.
+A working build of the NID website driven by the same tokens the Figma file
+uses. The whole **About NID** section is built — 11 pages — extracted
+automatically from the Figma boards rather than hand-authored, and rendered
+through the six section types in the CMS model.
 
 ## Why it is shaped this way
 
@@ -33,7 +32,7 @@ Python 3.9+ and nothing else. No npm, no lockfile, no install step.
 ```bash
 python3 tokens/build_tokens.py    # figma-tokens.json -> src/styles/tokens.css
 python3 build.py                  # src/content/*.json -> dist/
-open dist/about/index.html
+open dist/about-nid/index.html
 ```
 
 For a GitHub project page served from a sub-path:
@@ -47,15 +46,26 @@ python3 build.py --base=/nid-website
 ```
 tokens/figma-tokens.json   Exported from the Figma variable collections
 tokens/build_tokens.py     Generates tokens.css — do not hand-edit the CSS
-src/content/*.json         Page content in the CMS shape
+tokens/extractor.js        Reads the Figma page boards -> src/content/pages.json
+src/assets/logo.svg        The real NID logo, exported from the file
+src/content/pages.json     All page content in the CMS shape
 src/styles/base.css        Grid and components; consumes tokens only
 build.py                   Static generator, six section types
 .github/workflows/         Builds and publishes to Pages on push to main
 ```
 
+## Refreshing content from Figma
+
+`tokens/extractor.js` runs inside Figma (via the Figma MCP `use_figma` tool) and
+walks each page board: it reads the grid, splits sections on the separator rows,
+and classifies each one by what it contains — cards, links, or prose. Text is
+classified by the Figma text style it carries rather than by position, so a
+headline stays a headline even when the overline moves. Set `SLICE_FROM` and
+`SLICE_TO` to page through the boards within the tool's response-size limit.
+
 ## Content model
 
-`src/content/about-nid.json` is the CMS record for one page, in the shape the
+`src/content/pages.json` holds every page record, in the shape the
 *CMS & Data Model — Backend Reference* describes: fixed fields plus an ordered
 list of sections, each declaring a type. Six types and no more —
 `text`, `links`, `cards`, `files`, `rail`, `mosaic`.
@@ -86,13 +96,13 @@ stacked purely through grid auto-placement.
 
 ## Known gaps
 
-**Fonts.** Futura PT, Bodoni PT VF and Merriweather Sans are licensed and are
-not embedded here, so the screenshots render in fallback faces and the type
-*colour* is wrong even though every *size* is right. Adobe Fonts supports web
-embedding, so this is most likely a project setting rather than a purchase —
-but it must be confirmed before anything ships publicly. Add the embed to the
-`<head>` in `build.py` and the fallback stack in `tokens/build_tokens.py`
-becomes a fallback rather than the actual face.
+**Fonts.** Merriweather Sans is the real body face and is now loaded from
+Google Fonts. Futura PT and Bodoni PT VF are licensed and cannot be served from
+here, so **Jost** and **Bodoni Moda** stand in — Jost is a Futura-derived
+geometric sans and reads very close at heading sizes. Both licensed names are
+listed *first* in the token font stacks, so adding an Adobe Fonts web project
+embed to `FONT_LINKS` in `build.py` makes the real faces take over with no other
+change.
 
 **Images.** Every image is a labelled placeholder tile at the correct aspect
 ratio. The build environment could not reach Figma's asset CDN. Export the
@@ -102,7 +112,9 @@ content JSON and they appear with no code change.
 **The pattern strip** at the top and bottom of each page is a CSS approximation
 of the block-print band, standing in until the real SVG is exported.
 
-**Coverage.** One page of roughly 110 in the architecture.
+**Coverage.** 11 pages — the whole About NID section — of roughly 110 in the
+architecture. The extractor handles any board built on the standard chassis, so
+the remaining sections are a re-run rather than new work.
 
 ## Deploying
 

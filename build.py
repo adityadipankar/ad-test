@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """NID website — static build.
 
-Renders pages from src/content/*.json using the six section types described in
-the CMS & Data Model reference. No third-party dependencies: Python 3.9+ only,
-so it builds on a bare GitHub Actions runner without an install step.
+Renders every page in src/content/pages.json using the six section types from
+the CMS & Data Model reference. Python standard library only, so it builds on a
+bare GitHub Actions runner with no install step.
 
-    python3 build.py            # -> dist/
+    python3 build.py                    # -> dist/  (document-relative URLs)
+    python3 build.py --base=/repo-name  # -> dist/  (for a GitHub project page)
 
 Section types: text | links | cards | files | rail | mosaic
 Link icons are derived from targetType and are never authored, per the model.
@@ -14,6 +15,7 @@ Link icons are derived from targetType and are never authored, per the model.
 import html
 import json
 import pathlib
+import re
 import shutil
 import sys
 
@@ -21,17 +23,25 @@ ROOT = pathlib.Path(__file__).resolve().parent
 SRC = ROOT / "src"
 DIST = ROOT / "dist"
 
-# BASE is the absolute prefix used when the site is served from a sub-path,
-# e.g. a GitHub project page at /nid-website. When it is empty the build emits
-# document-relative URLs instead, so dist/ can be opened straight off disk.
 BASE = ""
-PREFIX = ""   # per-page relative prefix, e.g. "../", used only when BASE is empty
+PREFIX = ""
 
+LOGO = (SRC / "assets" / "logo.svg").read_text().strip()
 
-def url(path):
-    """Resolve a site-root-relative path for the page currently being rendered."""
-    path = path.lstrip("/")
-    return f"{BASE}/{path}" if BASE else f"{PREFIX}{path}"
+# Interim webfonts. Futura PT and Bodoni PT VF are licensed and are not served
+# here; Jost and Bodoni Moda stand in for them and are listed *after* the real
+# names in the token font stacks, so adding an Adobe Fonts kit to the <head>
+# takes over automatically with no other change. Merriweather Sans is the real
+# body face and is served from Google directly.
+FONT_LINKS = (
+    '<link rel="preconnect" href="https://fonts.googleapis.com">'
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2'
+    '?family=Bodoni+Moda:ital,wght@0,400;0,600;0,700;1,400'
+    '&family=Jost:wght@300;400;500;600;700;800'
+    '&family=Merriweather+Sans:ital,wght@0,300;0,400;0,700;0,800;1,300'
+    '&display=swap">'
+)
 
 ICONS = {
     "arrow-up-right": '<path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>',
@@ -43,109 +53,135 @@ ICONS = {
     "menu": '<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
 }
 
-# targetType -> icon. The single place link iconography is decided.
 LINK_ICON = {
-    "page": "arrow-up-right",
-    "external": "arrow-up-right",
-    "document": "file-text",
-    "back": "arrow-left",
-    "email": None,
-    "phone": None,
+    "page": "arrow-up-right", "external": "arrow-up-right", "document": "file-text",
+    "back": "arrow-left", "email": None, "phone": None,
 }
+
+TITLE_INDEX = {}   # normalised page title -> slug, for resolving unlinked labels
 
 
 def e(s):
     return html.escape(str(s), quote=True)
 
 
+def url(path):
+    path = path.lstrip("/")
+    return f"{BASE}/{path}" if BASE else f"{PREFIX}{path}"
+
+
 def icon(name, cls="cta__icon"):
     if not name or name not in ICONS:
         return ""
-    return (f'<span class="{cls}" aria-hidden="true"><svg viewBox="0 0 24 24">'
-            f'{ICONS[name]}</svg></span>')
+    return f'<span class="{cls}" aria-hidden="true"><svg viewBox="0 0 24 24">{ICONS[name]}</svg></span>'
+
+
+def norm(s):
+    return re.sub(r"[^a-z0-9]+", "", s.lower())
+
+
+def resolve(link):
+    """Fill in a missing destination by matching the label against page titles."""
+    if link.get("page") or link.get("targetType") in ("email", "phone", "external", "document"):
+        return link
+    key = norm(link["label"])
+    for alias, target in (("allnewsandevents", "about-nid/news-and-events"),
+                          ("nidsmandate", "about-nid/charter")):
+        if key == alias and target in TITLE_INDEX.values():
+            return {**link, "page": target}
+    if key in TITLE_INDEX:
+        return {**link, "page": TITLE_INDEX[key]}
+    return link
 
 
 def href(link):
     t = link.get("targetType", "page")
-    if t == "page":
-        return url(link.get("page", "").strip("/") + "/")
+    if t == "email":
+        return f'mailto:{link.get("address", link["label"])}'
+    if t == "phone":
+        return f'tel:{link.get("address", link["label"]).replace(" ", "")}'
     if t == "external":
         return link.get("url", "#")
     if t == "document":
-        return url(link.get("document", "").strip("/"))
-    if t == "email":
-        return f'mailto:{link.get("address", "")}'
-    if t == "phone":
-        return f'tel:{link.get("address", "").replace(" ", "")}'
-    return "#"
+        return link.get("url") or "#"
+    if link.get("page"):
+        return url(link["page"].strip("/") + "/")
+    return None
 
 
-def cta(link, style="t-heading-5"):
-    """The Call to actions component. Icon derived, never authored."""
-    ic = LINK_ICON.get(link.get("targetType", "page"))
-    new_tab = link.get("targetType") in ("external", "document")
-    rel = ' target="_blank" rel="noopener"' if new_tab else ""
-    return (f'<a class="cta" href="{e(href(link))}"{rel}>'
-            f'<span class="cta__label {style}">{e(link["label"])}</span>'
-            f'{icon(ic)}</a>')
+def cta(link, style="t-heading-5", kind=None):
+    link = resolve(link)
+    t = kind or link.get("targetType", "page")
+    ic = LINK_ICON.get(t, "arrow-up-right")
+    dest = href(link)
+    inner = f'<span class="cta__label {style}">{e(link["label"])}</span>{icon(ic)}'
+    if dest is None:
+        # No destination yet — render as a non-link so it cannot 404
+        return f'<span class="cta cta--todo" title="No destination yet">{inner}</span>'
+    rel = ' target="_blank" rel="noopener"' if t in ("external", "document") else ""
+    return f'<a class="cta" href="{e(dest)}"{rel}>{inner}</a>'
 
 
-def media(item, cls="", ratio_style=""):
-    """Image block. Falls back to a labelled placeholder when the asset is absent."""
-    asset = item.get("asset")
-    path = SRC.parent / "public" / "img" / f"{asset}.jpg" if asset else None
-    alt = e(item.get("alt", ""))
+def media(item, cls="", label=None):
+    asset = (item or {}).get("asset")
+    alt = e((item or {}).get("alt", ""))
+    path = ROOT / "public" / "img" / f"{asset}.jpg" if asset else None
     if path and path.exists():
-        inner = f'<img src="{e(url("img/" + asset + ".jpg"))}" alt="{alt}" loading="lazy">'
-        ph = ""
-    else:
-        inner = ""
-        ph = f' data-placeholder="{e(asset or "image")}"'
-    return f'<div class="media {cls}"{ph}{ratio_style}>{inner}</div>'
+        return f'<div class="media {cls}"><img src="{e(url("img/" + asset + ".jpg"))}" alt="{alt}" loading="lazy"></div>'
+    return f'<div class="media {cls}" data-placeholder="{e(label or asset or "image")}"></div>'
 
 
 # ---------------------------------------------------------------- section types
 
+def paras(body):
+    return "".join(f'<p class="prose t-body-base-regular">{e(p)}</p>'
+                   for p in (body or "").split("\n\n") if p.strip())
+
+
+def head(s):
+    if not s.get("title"):
+        return ""
+    return f'<div class="rail"><h2 class="sectiontitle t-heading-2">{e(s["title"])}</h2></div>'
+
+
+def aside(s):
+    if not s.get("links"):
+        return ""
+    return '<div class="aside linklist">' + "".join(cta(l) for l in s["links"]) + "</div>"
+
+
 def sec_text(s):
-    body = "".join(f'<p class="prose t-body-base-regular">{e(p)}</p>'
-                   for p in s.get("body", "").split("\n\n") if p.strip())
-    out = [f'<div class="rail"><h2 class="sectiontitle t-heading-2">{e(s["title"])}</h2></div>',
-           f'<div class="measure stack">{body}</div>']
-    if s.get("links"):
-        out.append('<div class="aside linklist">'
-                   + "".join(cta(l) for l in s["links"]) + "</div>")
+    out = [head(s), f'<div class="measure stack">{paras(s.get("body"))}</div>']
+    if s.get("image"):
+        out.append(f'<div class="measure">{media(s["image"], "media--section", s["image"].get("asset"))}</div>')
+    out.append(aside(s))
     return out
 
 
 def sec_links(s):
-    return [f'<div class="rail"><h2 class="sectiontitle t-heading-2">{e(s["title"])}</h2></div>',
-            '<div class="content linklist">'
-            + "".join(cta(l) for l in s.get("items", [])) + "</div>"]
+    return [head(s),
+            '<div class="content linklist linklist--wrap">'
+            + "".join(cta(l) for l in s.get("items", [])) + "</div>",
+            aside(s)]
 
 
 def sec_cards(s):
     variant = s.get("variant", "")
     cards = []
     for it in s.get("items", []):
-        cls = f'card card--{variant}' if variant else "card"
-        link = {"targetType": it.get("targetType", "page"), "page": it.get("page", "")}
-        tag_open = f'<a class="{cls}" href="{e(href(link))}">' if it.get("page") else f'<div class="{cls}">'
-        tag_close = "</a>" if it.get("page") else "</div>"
-        name = it.get("name") or it.get("headline", "")
+        cls = f"card card--{variant}" if variant else "card"
+        dest = href(resolve({"label": it.get("name", ""), "page": it.get("page")})) if it.get("page") else None
+        o = f'<a class="{cls}" href="{e(dest)}">' if dest else f'<div class="{cls}">'
+        c = "</a>" if dest else "</div>"
         style = "t-heading-6" if variant == "person" else "t-heading-3"
-        body = [media(it, f'card__media')]
-        body.append(f'<h3 class="card__title {style}">{e(name)}</h3>')
+        parts = [media(it, "card__media", it.get("asset")),
+                 f'<h3 class="card__title {style}">{e(it.get("name", ""))}</h3>']
+        if it.get("meta"):
+            parts.append(f'<p class="card__meta t-label-small">{e(it["meta"])}</p>')
         if it.get("note"):
-            body.append(f'<p class="card__note t-label-micro">{e(it["note"])}</p>')
-        cards.append(tag_open + "".join(body) + tag_close)
-
-    wrap_cls = "content cards"
-    out = [f'<div class="rail"><h2 class="sectiontitle t-heading-2">{e(s["title"])}</h2></div>',
-           f'<div class="{wrap_cls}">' + "".join(cards) + "</div>"]
-    if s.get("links"):
-        out.append('<div class="aside linklist">'
-                   + "".join(cta(l) for l in s["links"]) + "</div>")
-    return out
+            parts.append(f'<p class="card__note t-label-micro">{e(it["note"])}</p>')
+        cards.append(o + "".join(parts) + c)
+    return [head(s), '<div class="content cards">' + "".join(cards) + "</div>", aside(s)]
 
 
 def sec_mosaic(s):
@@ -153,53 +189,38 @@ def sec_mosaic(s):
     for it in s.get("items", []):
         wide = it.get("featured")
         cls = "card card--wide" if wide else "card"
-        link = {"targetType": "page", "page": it.get("page", "")}
-        open_t = f'<a class="{cls}" href="{e(href(link))}">' if it.get("page") else f'<div class="{cls}">'
-        close_t = "</a>" if it.get("page") else "</div>"
-        parts = [media(it, "card__media")]
+        dest = href(resolve({"label": it.get("name", ""), "page": it.get("page")})) if it.get("page") else None
+        o = f'<a class="{cls}" href="{e(dest)}">' if dest else f'<div class="{cls}">'
+        c = "</a>" if dest else "</div>"
+        parts = [media(it, "card__media", it.get("asset"))]
         if it.get("overline"):
             parts.append(f'<p class="card__meta t-label-overline">{e(it["overline"])}</p>')
-        style = "t-heading-4" if wide else "t-heading-5"
-        parts.append(f'<h3 class="card__title {style}">{e(it["headline"])}</h3>')
-        if it.get("date"):
-            parts.append(f'<p class="card__meta t-label-small">{e(it["date"])}</p>')
-        cards.append(open_t + "".join(parts) + close_t)
-
-    out = [f'<div class="rail"><h2 class="sectiontitle t-heading-2">{e(s["title"])}</h2></div>',
-           '<div class="content cards">' + "".join(cards) + "</div>"]
-    if s.get("links"):
-        out.append('<div class="aside linklist">'
-                   + "".join(cta(l) for l in s["links"]) + "</div>")
-    return out
+        parts.append(f'<h3 class="card__title {"t-heading-4" if wide else "t-heading-5"}">{e(it.get("name", ""))}</h3>')
+        if it.get("meta"):
+            parts.append(f'<p class="card__meta t-label-small">{e(it["meta"])}</p>')
+        cards.append(o + "".join(parts) + c)
+    return [head(s), '<div class="content cards">' + "".join(cards) + "</div>", aside(s)]
 
 
 def sec_files(s):
-    rows = "".join(cta({**f, "targetType": "document"}, "t-heading-5") for f in s.get("items", []))
-    out = [f'<div class="rail"><h2 class="sectiontitle t-heading-2">{e(s["title"])}</h2></div>',
-           f'<div class="measure linklist">{rows}</div>']
-    if s.get("contacts"):
-        out.append('<div class="aside linklist">'
-                   + "".join(cta(c) for c in s["contacts"]) + "</div>")
-    return out
+    rows = "".join(cta(f, kind="document") for f in s.get("items", []))
+    return [head(s), f'<div class="measure linklist">{rows}</div>', aside(s)]
 
 
 def sec_rail(s):
-    groups = []
+    out = [head(s)]
     for g in s.get("items", []):
         entries = "".join(
-            f'<div class="card card--person">{media(p, "card__media")}'
+            f'<div class="card card--person">{media(p, "card__media", p.get("asset"))}'
             f'<h3 class="card__title t-heading-6">{e(p.get("name", ""))}</h3></div>'
             for p in g.get("people", []))
-        groups.append(f'<div class="rail"><h3 class="t-label-overline">{e(g.get("label", ""))}</h3></div>'
-                      f'<div class="content cards">{entries}</div>')
-    return [f'<div class="rail"><h2 class="sectiontitle t-heading-2">{e(s["title"])}</h2></div>',
-            '<div class="content"></div>'] + groups
+        out.append(f'<div class="rail"><h3 class="t-label-overline">{e(g.get("label", ""))}</h3></div>')
+        out.append(f'<div class="content cards">{entries}</div>')
+    return out
 
 
-RENDERERS = {
-    "text": sec_text, "links": sec_links, "cards": sec_cards,
-    "files": sec_files, "rail": sec_rail, "mosaic": sec_mosaic,
-}
+RENDERERS = {"text": sec_text, "links": sec_links, "cards": sec_cards,
+             "files": sec_files, "rail": sec_rail, "mosaic": sec_mosaic}
 
 
 # ---------------------------------------------------------------------- shell
@@ -207,17 +228,11 @@ RENDERERS = {
 def masthead():
     return f"""<header class="masthead">
   <div class="masthead__inner">
-    <a class="masthead__brand" href="{url('')}">
-      <span class="masthead__mark" aria-hidden="true"></span>
-      <span class="masthead__wordmark">
-        <span class="t-label-micro">राष्ट्रीय डिज़ाइन संस्थान</span>
-        <span class="t-label-overline">National Institute of Design</span>
-      </span>
-    </a>
+    <a class="masthead__brand" href="{url('')}" aria-label="National Institute of Design — home">{LOGO}</a>
     <div class="masthead__tools">
       <button class="iconbtn" id="theme-cycle" title="Change theme" aria-label="Change theme"><svg viewBox="0 0 24 24">{ICONS['palette']}</svg></button>
       <button class="iconbtn" id="appearance-toggle" title="Light or dark" aria-label="Toggle light or dark"><svg viewBox="0 0 24 24">{ICONS['sun']}</svg></button>
-      <a class="t-label-small" href="#" style="text-decoration:none">Apply</a>
+      <a class="masthead__apply t-label-small" href="#">Apply</a>
       <button class="iconbtn" title="Search" aria-label="Search"><svg viewBox="0 0 24 24">{ICONS['search']}</svg></button>
       <button class="iconbtn" title="Menu" aria-label="Menu"><svg viewBox="0 0 24 24">{ICONS['menu']}</svg></button>
     </div>
@@ -231,17 +246,12 @@ def footer(f):
     c = f["contact"]
     contact = "".join(f'<a class="t-label-micro" href="mailto:{e(x)}">{e(x)}</a>' for x in c["emails"])
     contact += "".join(f'<a class="t-label-micro" href="tel:{e(x.replace(" ", ""))}">{e(x)}</a>' for x in c["phones"])
-    logos = "".join(f'<span>{e(x)}</span>' for x in f["collaborations"]["logos"])
-    # No explicit column placement: grid auto-placement gives 4 across at four
-    # columns, 3 with the fourth wrapping at three, 2x2 at two and a stack at one
-    # — exactly the progression the rendering contract describes.
+    logos = "".join(f"<span>{e(x)}</span>" for x in f["collaborations"]["logos"])
     return f"""<footer class="pagefoot">
   <div class="grid">
     <div class="footcol">{primary}</div>
     <div class="footcol">{secondary}</div>
-    <div class="footcol">
-      <h2 class="t-label-overline">{e(c['heading'])}</h2>{contact}
-    </div>
+    <div class="footcol"><h2 class="t-label-overline">{e(c['heading'])}</h2>{contact}</div>
     <div class="footcol">
       <h2 class="t-label-overline">{e(f['collaborations']['heading'])}</h2>
       <div class="logogrid">{logos}</div>
@@ -270,38 +280,55 @@ THEME_JS = """
 """
 
 
-def render_page(page):
+def render_page(page, foot, titles):
     global PREFIX
     depth = len([p for p in page["slug"].split("/") if p])
     PREFIX = "../" * depth if depth else "./"
-    blocks = []
 
-    # Row 0 — page title; row 1 — sub-page rail beside the hero; row 2 — intro
-    blocks.append(f'<div class="rail"><h1 class="pagetitle t-heading-1">{e(page["title"])}</h1></div>')
+    blocks = [f'<div class="rail"><h1 class="pagetitle t-heading-1">{e(page["title"])}</h1></div>']
+
+    # Utility slot: back-navigation on any page with a parent, labelled with the
+    # parent's title — derived, never authored.
+    if page.get("parent"):
+        parent_title = titles.get(page["parent"], page["parent"].split("/")[-1].replace("-", " ").title())
+        blocks.append('<div class="aside utility">'
+                      + cta({"label": parent_title, "page": page["parent"]}, "t-heading-5", kind="back")
+                      + "</div>")
+
+    if page.get("keyInfo"):
+        rows = "".join(
+            f'<div class="keyinfo__row"><dt class="t-label-overline">{e(k["label"])}</dt>'
+            f'<dd class="t-heading-5">{e(k["value"])}</dd></div>' for k in page["keyInfo"])
+        blocks.append(f'<dl class="rail keyinfo">{rows}</dl>')
+
     if page.get("subPages"):
         blocks.append('<nav class="rail linklist" aria-label="In this section">'
                       + "".join(cta(l) for l in page["subPages"]) + "</nav>")
+
     if page.get("hero"):
-        blocks.append('<div class="content">' + media(page["hero"], "media--hero") + "</div>")
+        blocks.append('<div class="content">' + media(page["hero"], "media--hero", page["hero"].get("asset")) + "</div>")
+
     if page.get("intro"):
         blocks.append(f'<div class="measure"><p class="intro t-body-large-regular">{e(page["intro"])}</p></div>')
 
     for s in page.get("sections", []):
         blocks.append('<hr class="hr">')
-        renderer = RENDERERS.get(s["type"])
-        if not renderer:
+        r = RENDERERS.get(s["type"])
+        if not r:
             raise SystemExit(f'Unknown section type: {s["type"]}')
         cls = "section section--aside" if s.get("links") else "section"
-        blocks.append(f'<div class="{cls}">' + "".join(renderer(s)) + "</div>")
+        blocks.append(f'<div class="{cls}">' + "".join(x for x in r(s) if x) + "</div>")
 
     body = "\n    ".join(blocks)
+    desc = (page.get("intro") or page["title"])[:155]
     return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(page['title'])} — National Institute of Design</title>
-<meta name="description" content="{e(page.get('intro', '')[:155])}">
+<meta name="description" content="{e(desc)}">
+{FONT_LINKS}
 <link rel="stylesheet" href="{url('styles/tokens.css')}">
 <link rel="stylesheet" href="{url('styles/base.css')}">
 </head>
@@ -314,7 +341,7 @@ def render_page(page):
     {body}
   </div>
 </main>
-{footer(page['footer'])}
+{footer(foot)}
 <div class="patternstrip" aria-hidden="true"></div>
 <script>{THEME_JS}</script>
 </body>
@@ -328,36 +355,43 @@ def main():
         if arg.startswith("--base="):
             BASE = arg.split("=", 1)[1].rstrip("/")
 
-    if DIST.exists():
-        shutil.rmtree(DIST)
-    (DIST / "styles").mkdir(parents=True)
+    data = json.loads((SRC / "content" / "pages.json").read_text())
+    pages, foot = data["pages"], data["footer"]
 
+    titles = {p["slug"]: p["title"] for p in pages}
+    TITLE_INDEX.clear()
+    for p in pages:
+        TITLE_INDEX[norm(p["title"])] = p["slug"]
+
+    # Clean the output directory, but tolerate filesystems that refuse deletes
+    # (network mounts, sandboxed volumes) — writing over the top still produces
+    # a correct build, it just leaves any stale file behind.
+    if DIST.exists():
+        try:
+            shutil.rmtree(DIST)
+        except OSError as err:
+            print(f"  note: could not clear {DIST.name}/ ({err.strerror}); overwriting in place")
+    (DIST / "styles").mkdir(parents=True, exist_ok=True)
     for css in ("tokens.css", "base.css"):
         shutil.copy(SRC / "styles" / css, DIST / "styles" / css)
-
     pub = ROOT / "public"
     if pub.exists():
         shutil.copytree(pub, DIST, dirs_exist_ok=True)
-
     (DIST / ".nojekyll").write_text("")
 
-    count = 0
-    for f in sorted((SRC / "content").glob("*.json")):
-        page = json.loads(f.read_text())
-        out = DIST / page["slug"] / "index.html" if page["slug"] else DIST / "index.html"
+    for p in pages:
+        out = DIST / p["slug"] / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(render_page(page))
-        count += 1
-        print(f"  {f.name:24s} -> {out.relative_to(DIST)}")
+        out.write_text(render_page(p, foot, titles))
+        print(f"  {p['slug'] or '(root)':52s} {p['title'][:40]}")
 
-    # Root redirect to the one page that exists in this proof
-    home = f"{BASE}/about/" if BASE else "./about/"
+    home = f"{BASE}/about-nid/" if BASE else "./about-nid/"
     (DIST / "index.html").write_text(
         f'<!doctype html><meta charset="utf-8">'
         f'<meta http-equiv="refresh" content="0; url={home}">'
         f'<title>NID</title><a href="{home}">About NID</a>')
 
-    print(f"built {count} page(s) into {DIST}" + (f' with base "{BASE}"' if BASE else ""))
+    print(f"built {len(pages)} pages into {DIST}" + (f' with base "{BASE}"' if BASE else ""))
 
 
 if __name__ == "__main__":
