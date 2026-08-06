@@ -257,6 +257,18 @@ def sec_rail(s):
 
 
 
+
+def statement_html(text):
+    """Position Statement: every full stop takes accent/secondary while the words
+    take text/primary. The component specifies this per-character, so it is
+    generated here rather than authored into the content."""
+    lines = []
+    for line in text.split("\n"):
+        lines.append("".join('<span class="stop">.</span>' if part == "." else e(part)
+                             for part in re.split(r"(\.)", line)))
+    return "<br>".join(lines)
+
+
 def sec_tiles(s):
     """The home mosaic: one square tile per module, laid straight onto the page grid."""
     out = []
@@ -277,7 +289,7 @@ def sec_tiles(s):
             inner.append(f'<p class="tile__over t-label-overline">{e(it["overline"])}</p>')
 
         if kind == "statement":
-            inner.append(f'<p class="tile__statement t-heading-2">{e(it["text"])}</p>')
+            inner.append(f'<p class="tile__statement">{statement_html(it["text"])}</p>')
         elif kind == "quote":
             inner.append(f'<blockquote class="tile__quote t-display-quote">{e(it["text"])}</blockquote>')
         elif kind == "pairs":

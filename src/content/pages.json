@@ -13,7 +13,8 @@
           "items": [
             {
               "kind": "statement",
-              "text": "Curiosity. Craft. Purpose. Design that shapes tomorrow."
+              "text": "Curiosity.\nCraft.\nPurpose.\nDesign that shapes tomorrow.",
+              "_spec": "Figma 3125:56916 — Futura PT Demi 50/50, -3%, text/primary; full stops in accent/secondary; no fill, no padding, top-left."
             },
             {
               "kind": "blank",

@@ -420,11 +420,37 @@ a { color: inherit; }
 
 /* Empty tiles are part of the composition — they set the rhythm */
 .tile--blank { background: var(--c-accent-subtle); }
-.tile--statement { background: var(--c-surface-inverse); }
-.tile--statement .tile__statement { color: var(--c-text-on-accent); }
-.tile--statement .tile__inner { justify-content: flex-end; }
 
 /* A tile is a fixed square; long lists fade out rather than spilling past it */
 .tile__inner { overflow: hidden; }
 .tile__list { overflow: hidden; mask-image: linear-gradient(to bottom, #000 78%, transparent); }
 .tile--list .tile__inner { padding-bottom: var(--space-12); }
+
+/* ---------------------------------------------------- Position Statement tile
+
+   Spec read from Figma node 3125:56916:
+     tile      330x330, no fill, no padding, contents top-left
+     type      Futura PT Demi 50 / 50 / -3%  (an un-tokenised one-off in the
+               file — it matches no text style, so the size lives here and
+               steps down on the same ratios as Heading/1: 60→52→40→32)
+     words     Semantic/text/primary       #432133
+     full stops Semantic/accent/secondary  #c4686c
+*/
+:root            { --type-statement: 50px; }
+@media (max-width: 1279px) { :root { --type-statement: 43px; } }
+@media (max-width: 1023px) { :root { --type-statement: 33px; } }
+@media (max-width: 767px)  { :root { --type-statement: 27px; } }
+
+.tile--statement { background: none; }
+.tile--statement .tile__inner { padding: 0; justify-content: flex-start; }
+
+.tile__statement {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-weight: 600;                 /* Demi */
+  font-size: var(--type-statement);
+  line-height: 1;                   /* 50 / 50 */
+  letter-spacing: -0.03em;
+  color: var(--c-text-primary);
+}
+.tile__statement .stop { color: var(--c-accent-secondary); }
